@@ -1,8 +1,8 @@
 "use client";
 import styled from "styled-components";
 import React, { useState, useRef } from "react";
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { Volume2, VolumeX } from "lucide-react";
+import { motion, useInView, useMotionValue, animate, AnimatePresence } from "framer-motion";
+import { Volume2, VolumeX, Menu, X } from "lucide-react";
 import Image from "next/image";
 import PartneredWith from "@/components/PartneredWith";
 import Link from "next/link";
@@ -62,6 +62,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Responsive state for card animation
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -124,16 +125,45 @@ export default function Home() {
             </LogoLink>
 
             <NavLinks>
-              <NavLink href="/#experience">Features</NavLink>
+              <NavLink href="https://www.hidevs.xyz">Features</NavLink>
               <NavLink href="/">AI House</NavLink>
-              <NavLink href="/aboutus">About Us</NavLink>
-              <NavLink href="/city-lead">City Lead</NavLink>
-              <NavLink href="/lbl">LBL</NavLink>
+              <NavLink href="https://www.hidevs.xyz/aboutus">About Us</NavLink>
+              <NavLink href="https://www.hidevs.xyz/city-lead">City Lead</NavLink>
+              <NavLink href="https://www.hidevs.xyz/lbl">LBL</NavLink>
             </NavLinks>
 
             <StartButton href="http://app.hidevs.xyz">Start Learning</StartButton>
+
+            <MobileMenuButton onClick={() => setIsMobileMenuOpen(true)}>
+              <Menu size={24} color="#ffffff" />
+            </MobileMenuButton>
           </NavContainer>
         </Navbar>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <MobileMenuOverlay
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            >
+              <CloseButton onClick={() => setIsMobileMenuOpen(false)}>
+                <X size={28} color="#ffffff" />
+              </CloseButton>
+              <MobileNavContent>
+                <MobileNavLink href="https://www.hidevs.xyz" onClick={() => setIsMobileMenuOpen(false)}>Features</MobileNavLink>
+                <MobileNavLink href="/" onClick={() => setIsMobileMenuOpen(false)}>AI House</MobileNavLink>
+                <MobileNavLink href="https://www.hidevs.xyz/aboutus" onClick={() => setIsMobileMenuOpen(false)}>About Us</MobileNavLink>
+                <MobileNavLink href="https://www.hidevs.xyz/city-lead" onClick={() => setIsMobileMenuOpen(false)}>City Lead</MobileNavLink>
+                <MobileNavLink href="https://www.hidevs.xyz/lbl" onClick={() => setIsMobileMenuOpen(false)}>LBL</MobileNavLink>
+                <MobileStartButton href="http://app.hidevs.xyz" onClick={() => setIsMobileMenuOpen(false)}>
+                  Start Learning
+                </MobileStartButton>
+              </MobileNavContent>
+            </MobileMenuOverlay>
+          )}
+        </AnimatePresence>
 
         <OverlayWrapper>
           <MainHeadingWrapper
@@ -527,6 +557,76 @@ const StartButton = styled(Link)`
     padding: 0.4rem 1rem;
     font-size: 0.9rem;
   }
+`;
+
+const MobileMenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  
+  @media (max-width: 1024px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const MobileMenuOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 300px;
+  background: rgba(20, 10, 30, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 200;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+`;
+
+const MobileNavContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+`;
+
+const MobileNavLink = styled(Link)`
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #724e99;
+  }
+`;
+
+const MobileStartButton = styled(Link)`
+  margin-top: 1rem;
+  background: #724e99;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
 `;
 
 const OverlayWrapper = styled.div`

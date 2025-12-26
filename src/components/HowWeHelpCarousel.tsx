@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { zoomInOut, viewportOptionsFast } from '@/lib/animations';
 
 interface CarouselItem {
     id: string;
@@ -42,10 +40,8 @@ const HowWeHelpCarousel: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [resetEpoch, setResetEpoch] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const autoScrollIntervalRef = useRef<any>(null);
 
     // Detect mobile screen size
     useEffect(() => {
@@ -59,7 +55,7 @@ const HowWeHelpCarousel: React.FC = () => {
             ([entry]) => {
                 setIsVisible(entry.isIntersecting);
             },
-            { threshold: 0.5 } // 50% visibility to trigger auto-scroll
+            { threshold: 0.5 }
         );
 
         if (containerRef.current) {
@@ -74,78 +70,26 @@ const HowWeHelpCarousel: React.FC = () => {
         };
     }, []);
 
-    // Auto-scroll on mobile only
-    useEffect(() => {
-        if (!isMobile || !carouselRef.current || !isVisible) {
-            if (autoScrollIntervalRef.current) {
-                clearInterval(autoScrollIntervalRef.current);
-            }
-            return;
-        }
-
-        const scrollToCard = (index: number) => {
-            const container = carouselRef.current;
-            if (!container) return;
-
-            const cards = container.querySelectorAll('[data-card-index]');
-            const targetCard = cards[index] as HTMLElement;
-            if (targetCard) {
-                targetCard.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
-        };
-
-        const startAutoScroll = () => {
-            if (autoScrollIntervalRef.current) clearInterval(autoScrollIntervalRef.current);
-            autoScrollIntervalRef.current = setInterval(() => {
-                setActiveIndex((prev) => {
-                    const next = (prev + 1) % items.length;
-                    scrollToCard(next);
-                    return next;
-                });
-            }, 4000);
-        };
-
-        startAutoScroll();
-
-        return () => {
-            if (autoScrollIntervalRef.current) {
-                clearInterval(autoScrollIntervalRef.current);
-            }
-        };
-    }, [isMobile, isVisible, resetEpoch]);
-
     const handleCardClick = (index: number) => {
         setActiveIndex(index);
+    };
 
-        // Scroll to card on mobile
-        if (isMobile && carouselRef.current) {
-            const container = carouselRef.current;
-            const cards = container.querySelectorAll('[data-card-index]');
-            const targetCard = cards[index] as HTMLElement;
-            if (targetCard) {
-                targetCard.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
-        }
+    const handlePrevious = () => {
+        const newIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(newIndex);
+    };
 
-        // Reset auto-scroll timer on mobile by triggering the effect
-        setResetEpoch(Date.now());
+    const handleNext = () => {
+        const newIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(newIndex);
     };
 
     const getCardStyle = (index: number) => {
+        // Desktop: expandable cards
         if (index === activeIndex) {
-            // Decreased width on mobile: 65vw, reduced height
-            return 'w-[65vw] sm:w-[400px] md:w-[460px] opacity-100';
+            return 'w-[400px] md:w-[460px] opacity-100';
         }
-        // Slightly wider collapsed cards on mobile for better target
-        return 'w-[45px] sm:w-[120px] md:w-[240px] opacity-60 hover:opacity-80';
+        return 'w-[120px] md:w-[240px] opacity-60 hover:opacity-80';
     };
 
     return (
@@ -159,94 +103,125 @@ const HowWeHelpCarousel: React.FC = () => {
                     scrollbar-width: none;
                 }
             `}</style>
-            <motion.div 
-                ref={containerRef} 
-                className="min-h-fit bg-white py-4 sm:py-10 md:py-16 px-2 sm:px-4"
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOptionsFast}
-                variants={zoomInOut}
-                style={{
-                    willChange: "transform, opacity",
-                    transform: "translateZ(0)",
-                }}
-            >
+            <div ref={containerRef} className="min-h-fit bg-white py-4 sm:py-10 md:py-16 px-2 sm:px-4">
                 <div className="max-w-[1400px] mx-auto">
                     {/* Header */}
-                    <motion.div 
-                        className="text-center mb-6 sm:mb-8 md:mb-16"
-                        variants={zoomInOut}
-                    >
+                    <div className="text-center mb-6 sm:mb-8 md:mb-16">
                         <p className="text-[#724e99] text-[10px] sm:text-xs md:text-sm mb-1 sm:mb-2 md:mb-4 tracking-wide font-semibold">Fueling Your Growth</p>
                         <h1 className="text-[#1a1a1a] text-2xl sm:text-3xl md:text-6xl font-bold leading-tight">Who HiDevs AI House Is For</h1>
-                    </motion.div>
+                    </div>
 
-                    {/* Carousel */}
-                    <div
-                        ref={carouselRef}
-                        className="flex gap-2 sm:gap-4 justify-start sm:justify-center items-stretch overflow-x-auto pb-8 scrollbar-hide"
-                        style={{
-                            scrollSnapType: isMobile ? 'x mandatory' : 'none',
-                            WebkitOverflowScrolling: 'touch',
-                            scrollbarWidth: 'none',
-                            msOverflowStyle: 'none',
-                        }}
-                    >
-                        {items.map((item, index) => (
-                            <div
-                                key={item.id}
-                                data-card-index={index}
-                                onClick={() => handleCardClick(index)}
-                                className={`${getCardStyle(index)} flex-shrink-0 rounded-2xl sm:rounded-2xl md:rounded-3xl h-[300px] sm:h-[450px] md:h-[600px] overflow-hidden cursor-pointer transition-all duration-500 ease-out transform hover:scale-[1.01] shadow-lg relative`}
-                                style={{
-                                    scrollSnapAlign: isMobile ? 'center' : 'none',
-                                }}
-                            >
+                    {/* Mobile Single Card View */}
+                    {isMobile ? (
+                        <div className="flex justify-center items-center px-4">
+                            <div className="w-full max-w-[90vw] rounded-2xl h-[450px] overflow-hidden shadow-lg relative">
                                 <div className="relative h-full w-full">
                                     {/* Background Image */}
                                     <Image
-                                        src={item.image}
-                                        alt={item.title}
+                                        src={items[activeIndex].image}
+                                        alt={items[activeIndex].title}
                                         fill
                                         className="object-cover"
-                                        sizes="(max-width: 768px) 100vw, 460px"
+                                        sizes="90vw"
+                                        priority
                                     />
 
-
                                     {/* Content */}
-                                    <div className={`absolute inset-0 flex flex-col justify-end p-3 sm:p-5 md:p-8 z-10 ${index === activeIndex ? 'bg-gradient-to-t from-black/60 via-black/30 to-transparent' : 'bg-black/30 hover:bg-black/40'}`}>
-                                        {index === activeIndex ? (
-                                            // Expanded View
-                                            <div className="animate-fadeIn">
-                                                <h3 className="text-white text-base sm:text-xl md:text-3xl font-bold mb-1.5 sm:mb-2 md:mb-4">{item.title}</h3>
-                                                <div className="text-[#eadff5] text-[12px] sm:text-xs md:text-base font-medium leading-[1.5] whitespace-pre-line">
-                                                    {item.description}
-                                                </div>
+                                    <div className="absolute inset-0 flex flex-col justify-end p-5 z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                                        <div className="animate-fadeIn">
+                                            <h3 className="text-white text-xl font-bold mb-3">{items[activeIndex].title}</h3>
+                                            <div className="text-[#eadff5] text-sm font-medium leading-relaxed whitespace-pre-line">
+                                                {items[activeIndex].description}
                                             </div>
-                                        ) : (
-                                            // Collapsed View
-                                            <h3
-                                                className="text-white text-xs sm:text-base md:text-2xl font-bold transform origin-bottom-left pb-2 sm:pb-4 md:pb-0"
-                                                style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-                                            >
-                                                {item.title}
-                                            </h3>
-                                        )}
+                                        </div>
                                     </div>
-
-                                    {/* Hover Effect Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ) : (
+                        // Desktop Carousel
+                        <div className="flex justify-center items-center">
+                            <div
+                                ref={carouselRef}
+                                className="flex gap-4 items-stretch"
+                            >
+                                {items.map((item, index) => (
+                                    <div
+                                        key={item.id}
+                                        data-card-index={index}
+                                        onClick={() => handleCardClick(index)}
+                                        className={`${getCardStyle(index)} flex-shrink-0 rounded-2xl md:rounded-3xl h-[450px] md:h-[600px] overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg relative`}
+                                    >
+                                        <div className="relative h-full w-full">
+                                            {/* Background Image */}
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="460px"
+                                            />
+
+                                            {/* Content */}
+                                            <div className={`absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-10 ${index === activeIndex ? 'bg-gradient-to-t from-black/70 via-black/30 to-transparent' : 'bg-black/40'}`}>
+                                                {index === activeIndex ? (
+                                                    // Expanded View
+                                                    <div className="animate-fadeIn">
+                                                        <h3 className="text-white text-xl md:text-3xl font-bold mb-2 md:mb-4">{item.title}</h3>
+                                                        <div className="text-[#eadff5] text-xs md:text-base font-medium leading-relaxed whitespace-pre-line">
+                                                            {item.description}
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    // Collapsed View - vertical text
+                                                    <h3
+                                                        className="text-white font-bold text-base md:text-2xl transform origin-bottom-left pb-4 md:pb-0"
+                                                        style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+                                                    >
+                                                        {item.title}
+                                                    </h3>
+                                                )}
+                                            </div>
+
+                                            {/* Hover Effect Overlay */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Mobile Arrow Navigation */}
+                    {isMobile && (
+                        <div className="flex justify-center items-center gap-6 mt-6">
+                            <button
+                                onClick={handlePrevious}
+                                className="w-12 h-12 rounded-full bg-[#724e99] text-white flex items-center justify-center shadow-lg hover:bg-[#5c3d7a] transition-colors duration-300 active:scale-95"
+                                aria-label="Previous slide"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className="w-12 h-12 rounded-full bg-[#724e99] text-white flex items-center justify-center shadow-lg hover:bg-[#5c3d7a] transition-colors duration-300 active:scale-95"
+                                aria-label="Next slide"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
 
                     {/* Navigation Dots */}
-                    <div className="flex justify-center gap-2 mt-8">
+                    <div className={`flex justify-center gap-2 ${isMobile ? 'mt-4' : 'mt-8'}`}>
                         {items.map((_, index) => (
                             <button
                                 key={index}
-                                onClick={() => handleCardClick(index)}
+                                onClick={() => isMobile ? setActiveIndex(index) : handleCardClick(index)}
                                 className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
                                     ? 'w-8 bg-[#724e99]'
                                     : 'w-2 bg-[#724e99]/30 hover:bg-[#724e99]/50'
@@ -256,7 +231,7 @@ const HowWeHelpCarousel: React.FC = () => {
                         ))}
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </>
     );
 };

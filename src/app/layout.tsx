@@ -14,6 +14,9 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "AI House Bangalore - Learn | Build | Launch",
     description: "Bangalore's dedicated AI execution hub for engineers and founders.",
+    icons: {
+        icon: '/logo-white.png',
+    },
 };
 
 export default function RootLayout({

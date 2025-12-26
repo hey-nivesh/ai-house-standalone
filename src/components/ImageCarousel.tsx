@@ -16,28 +16,41 @@ const ImageCarousel = () => {
     const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8]);
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-    // Images from public/lbl (max 8)
+    // Images for Top Row (Mixed)
+    // Images for Top Row (Mixed)
     const topRowImages = [
         '/lbl/DSC_0116.JPG',
         '/lbl/DSC_0117.JPG',
         '/lbl/DSC_0118.JPG',
+        '/ai-house/DSC_0044.jpg',
         '/lbl/DSC_0123.JPG',
-        '/lbl/DSC_0124.JPG',
         '/lbl/DSC_0125.JPG',
-        '/lbl/DSC_0126.JPG',
-        '/lbl/DSC_0151.JPG',
+        '/ai-house/20251219_183535.jpg',
+        '/ai-house/20251219_185847.jpg',
+        '/ai-house/20251219_190451.jpg',
+        '/ai-house/20251219_191055.jpg',
+        '/ai-house/20251219_191527.jpg',
+        '/ai-house/20251219_192623.jpg',
     ];
 
-    // Images from public/ai-house (max 8)
+    // Images for Bottom Row (Mixed, Distinct from Top Row)
     const bottomRowImages = [
         '/ai-house/DSC_0031.jpg',
         '/ai-house/DSC_0042.jpg',
-        '/ai-house/DSC_0044.jpg',
+        '/lbl/DSC_0151.JPG',
+        '/lbl/DSC_0152.JPG',
+        '/lbl/DSC_0153.JPG',
+        '/lbl/DSC_0154.JPG',
+        '/lbl/DSC_0155.JPG',
+        '/ai-house/20251219_193000.jpg',
+        '/ai-house/20251219_195134.jpg',
         '/ai-house/DSC_0061.jpg',
         '/ai-house/DSC_0062.jpg',
         '/ai-house/IMG_0405.jpg',
         '/ai-house/IMG_0406.jpg',
         '/ai-house/IMG_9036.jpg',
+        '/ai-house/IMG_9043.jpg',
+        '/ai-house/IMG_9048.jpg',
     ];
 
     return (
@@ -69,7 +82,7 @@ const ImageCarousel = () => {
                     <motion.div
                         className="flex w-max"
                         animate={{
-                            x: ["-50%", "0%"],
+                            x: ["-25%", "0%"],
                         }}
                         transition={{
                             x: {
@@ -80,7 +93,7 @@ const ImageCarousel = () => {
                             },
                         }}
                     >
-                        {[...topRowImages, ...topRowImages].map((img, index) => (
+                        {[...topRowImages, ...topRowImages, ...topRowImages, ...topRowImages].map((img, index) => (
                             <div
                                 key={`top-${index}`}
                                 className="relative flex-shrink-0 w-[200px] h-[140px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-2 md:mx-3 rounded-xl overflow-hidden group"
@@ -103,7 +116,7 @@ const ImageCarousel = () => {
                     <motion.div
                         className="flex w-max"
                         animate={{
-                            x: ["0%", "-50%"],
+                            x: ["0%", "-25%"],
                         }}
                         transition={{
                             x: {
@@ -114,7 +127,7 @@ const ImageCarousel = () => {
                             },
                         }}
                     >
-                        {[...bottomRowImages, ...bottomRowImages].map((img, index) => (
+                        {[...bottomRowImages, ...bottomRowImages, ...bottomRowImages, ...bottomRowImages].map((img, index) => (
                             <div
                                 key={`bottom-${index}`}
                                 className="relative flex-shrink-0 w-[200px] h-[140px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-2 md:mx-3 rounded-xl overflow-hidden group"

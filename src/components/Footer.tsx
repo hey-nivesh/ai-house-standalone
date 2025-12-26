@@ -233,6 +233,23 @@ const LinkColumn = styled.div`
   }
 `;
 
+const ExploreGrid = styled.div`
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 2rem;
+  row-gap: 0.75rem;
+
+  @media (max-width: 1024px) {
+    column-gap: 1.5rem;
+    row-gap: 0.625rem;
+  }
+
+  @media (max-width: 480px) {
+    column-gap: 1rem;
+    row-gap: 0.375rem;
+  }
+`;
+
 const ColumnTitle = styled.h4`
   font-size: 1.125rem;
   font-weight: bold;
@@ -505,15 +522,29 @@ export default function Footer() {
                 >
                   <LinkColumn>
                     <ColumnTitle>{column.title}</ColumnTitle>
-                    {column.links.map((link, linkIndex) => (
-                      <StyledLink
-                        key={linkIndex}
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                      >
-                        {link.title}
-                      </StyledLink>
-                    ))}
+                    {column.title === "Explore" ? (
+                      <ExploreGrid>
+                        {column.links.map((link, linkIndex) => (
+                          <StyledLink
+                            key={linkIndex}
+                            href={link.href}
+                            target={link.href.startsWith("http") ? "_blank" : undefined}
+                          >
+                            {link.title}
+                          </StyledLink>
+                        ))}
+                      </ExploreGrid>
+                    ) : (
+                      column.links.map((link, linkIndex) => (
+                        <StyledLink
+                          key={linkIndex}
+                          href={link.href}
+                          target={link.href.startsWith("http") ? "_blank" : undefined}
+                        >
+                          {link.title}
+                        </StyledLink>
+                      ))
+                    )}
                   </LinkColumn>
                 </motion.div>
               ))}
