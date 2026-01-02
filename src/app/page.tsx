@@ -15,6 +15,53 @@ import ImageCarousel from "@/components/ImageCarousel";
 import WorkshopsFAQ from "@/components/WorkshopsFAQ";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import dynamic from "next/dynamic";
+
+// Simple skeleton placeholder used before sections mount
+const SectionSkeleton = ({ minHeight = 420 }: { minHeight?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 24 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.45, ease: "easeOut" }}
+    style={{
+      width: "100%",
+      minHeight,
+      borderRadius: 24,
+      margin: "3rem auto",
+      background:
+        "linear-gradient(135deg, rgba(114,78,153,0.06), rgba(255,255,255,0.9))",
+      boxShadow: "0 18px 45px rgba(15,23,42,0.06)",
+    }}
+    className="section-skeleton"
+  />
+);
+
+// Lazy mount a section when it enters the viewport, keeping smooth scroll behaviour
+const LazySection = ({
+  children,
+  minHeight,
+}: {
+  children: React.ReactNode;
+  minHeight?: number;
+}) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.2,
+  });
+
+  return (
+    <div ref={ref}>
+      {isInView ? children : <SectionSkeleton minHeight={minHeight} />}
+    </div>
+  );
+};
+
+const ImageCarouselDynamic = dynamic(() => import("@/components/ImageCarousel"), {
+  ssr: false,
+  loading: () => <SectionSkeleton minHeight={400} />,
+});
+
 
 // Animation variants for mirror transition effect
 const fadeUpVariant = {
@@ -352,7 +399,9 @@ export default function Home() {
             <PartneredWith />
             <LearningPlatformUI />
             <CoreOfferingsSection />
-            <ImageCarousel />
+            <LazySection>
+              <ImageCarouselDynamic />
+            </LazySection>
             <AIHouseDifferenceSection />
             <WorldMapSection />
             <WorkshopsFAQ />
