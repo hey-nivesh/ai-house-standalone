@@ -103,10 +103,10 @@ const HowWeHelpCarousel: React.FC = () => {
                     scrollbar-width: none;
                 }
             `}</style>
-            <div ref={containerRef} className="min-h-fit bg-white py-4 sm:py-10 md:py-16 px-2 sm:px-4">
+            <div ref={containerRef} className="min-h-fit bg-white pb-2 sm:pb-4 md:pb-6 pt-0 px-2 sm:px-4">
                 <div className="max-w-[1400px] mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-6 sm:mb-8 md:mb-16">
+                    <div className="text-center mb-4 sm:mb-6 md:mb-8">
                         <p className="text-[#724e99] text-[10px] sm:text-xs md:text-sm mb-1 sm:mb-2 md:mb-4 tracking-wide font-semibold">Fueling Your Growth</p>
                         <h1 className="text-[#1a1a1a] text-2xl sm:text-3xl md:text-6xl font-bold leading-tight">Who HiDevs AI House Is For</h1>
                     </div>

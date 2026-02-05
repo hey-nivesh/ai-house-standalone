@@ -72,7 +72,7 @@ const PartneredWith: React.FC = () => {
       ref={sectionRef}
       style={{
         width: "100%",
-        padding: "4rem 0",
+        padding: "1rem 0",
         backgroundColor: "#ffffff", // Plain white background
         overflow: "hidden",
         position: "relative",

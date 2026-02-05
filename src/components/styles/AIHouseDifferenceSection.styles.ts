@@ -4,10 +4,10 @@
  */
 
 export const differenceStyles = {
-    section: "min-h-screen bg-white py-12 md:py-20 px-4 md:px-8 overflow-hidden",
+    section: "bg-white py-6 md:py-10 px-4 md:px-8 overflow-hidden",
     container: "max-w-[1600px] mx-auto px-4 md:px-8",
     grid: "grid lg:grid-cols-2 gap-12 md:gap-20 lg:gap-24 items-center",
-    
+
     // Content
     subtitle: "text-[#724e99] text-xs md:text-sm mb-3 md:mb-4 tracking-wide font-medium",
     title: "text-[#1a1a1a] text-3xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-12",
@@ -16,13 +16,13 @@ export const differenceStyles = {
     primary: "flex-1 text-[#724e99] text-lg md:text-2xl font-bold",
     greaterThan: "text-[#724e99] text-2xl md:text-3xl font-bold",
     secondary: "flex-1 text-[#1a1a1a]/40 text-lg md:text-2xl font-medium line-through",
-    
+
     // Bottom message
     messageBox: "border-l-4 border-[#724e99] pl-4 md:pl-6",
     messageText: "text-[#1a1a1a] text-base md:text-xl font-medium leading-relaxed",
     strikethrough: "line-through text-[#1a1a1a]/40",
     highlight: "text-[#724e99] font-bold",
-    
+
     // Image
     imageContainer: "relative h-[400px] md:h-[600px] w-full",
     imageWrapper: "relative w-full h-full rounded-3xl overflow-hidden shadow-2xl",

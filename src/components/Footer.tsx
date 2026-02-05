@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <footer className="relative w-full">
       {/* Main footer content */}
-      <div 
+      <div
         className="w-full pt-12 pb-6 px-6 md:px-12 lg:px-20 rounded-t-[40px] md:rounded-t-[60px] lg:rounded-t-[80px]"
         style={{
           background: "linear-gradient(135deg, #724e99 0%, #1a1a1a 100%)",
@@ -32,8 +32,8 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto">
           {/* Logo Section - Centered */}
           <div className="text-center mb-8">
-            <a 
-              href="https://www.hidevs.xyz" 
+            <a
+              href="https://www.hidevs.xyz"
               className="inline-block transition-transform hover:-translate-y-1"
             >
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
