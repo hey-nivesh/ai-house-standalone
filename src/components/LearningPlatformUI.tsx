@@ -50,14 +50,14 @@ const cards = [
 
 // Styled components
 const Container = styled.div`
-  padding: 2rem;
-  min-height: 100vh;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  padding: 1rem 2rem;
+  min-height: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 
   @media (max-width: 768px) {
-    padding: 0.75rem;
-    margin-top: 1rem;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
   }
 
@@ -398,8 +398,8 @@ export default function LearningPlatformUI() {
           variants={staggerContainer}
         >
           {cards.map((card, idx) => (
-            <Card 
-              key={card.id} 
+            <Card
+              key={card.id}
               ref={cardRefs[idx]}
               as={motion.div}
               variants={staggerItem}

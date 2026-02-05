@@ -7,6 +7,7 @@ import Image from "next/image";
 import PartneredWith from "@/components/PartneredWith";
 import Link from "next/link";
 import LearningPlatformUI from "@/components/LearningPlatformUI";
+import LinkedInShowcase from "@/components/LinkedInShowcase";
 import HowWeHelpCarousel from "@/components/HowWeHelpCarousel";
 import CoreOfferingsSection from "@/components/CoreOfferingsSection";
 import AIHouseDifferenceSection from "@/components/AIHouseDifferenceSection";
@@ -354,8 +355,8 @@ export default function Home() {
             style={{
               width: "100%",
               maxWidth: "1200px",
-              margin: "4rem auto 2rem",
-              padding: "3rem 1rem",
+              margin: "2rem auto 0.5rem",
+              padding: "1rem 1rem",
               textAlign: "center",
             }}
           >
@@ -390,21 +391,19 @@ export default function Home() {
           </motion.div>
 
           <OverlayWrapper>
-            <MidCTAWrapper
-              as={motion.div}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <Link href="https://docs.google.com/forms/d/e/1FAIpQLScmGt3e2pM9ltxuTGf_G2__FePkX4HIOI-BvxfnOZBK5WcsrA/viewform" target="_blank" rel="noopener noreferrer">
-
-              </Link>
-            </MidCTAWrapper>
-
             <HowWeHelpCarousel />
             <PartneredWith />
+            <MatrixShowcase>
+              <Image
+                src="/matrix_showcasing.png"
+                alt="Matrix Showcase"
+                width={1920}
+                height={1080}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </MatrixShowcase>
             <LearningPlatformUI />
+            <LinkedInShowcase />
             <CoreOfferingsSection />
             <LazySection>
               <ImageCarouselDynamic />
@@ -481,8 +480,9 @@ export default function Home() {
             </LocationSection>
           </OverlayWrapper>
           <Footer />
-        </Wrapper>
-      )}
+        </Wrapper >
+      )
+      }
     </>
   );
 }
@@ -1143,18 +1143,28 @@ const Highlight = styled.span`
   font-weight: 600;
 `;
 
+const MatrixShowcase = styled.div`
+  width: 100%;
+  margin: 0;
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+`;
+
 const LocationSection = styled.section`
   width: 100%;
   max-width: 1500px;
-  margin: 3rem auto 2rem;
+  margin: 1.5rem auto 1rem;
   padding: 0 1.5rem;
 
   @media (min-width: 768px) {
-    margin: 4rem auto 2.5rem;
+    margin: 2rem auto 1.5rem;
   }
 
   @media (min-width: 1024px) {
-    margin: 5rem auto 3rem;
+    margin: 2.5rem auto 2rem;
   }
 `;
 
