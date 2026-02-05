@@ -37,8 +37,8 @@ const CoreOfferingsSection: React.FC = () => {
     ];
 
     return (
-        <motion.div 
-            ref={sectionRef} 
+        <motion.div
+            ref={sectionRef}
             className={coreOfferingsStyles.section}
             initial="hidden"
             whileInView="visible"
@@ -162,6 +162,21 @@ const CoreOfferingsSection: React.FC = () => {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* CTA Button */}
+                <motion.div
+                    className={coreOfferingsStyles.ctaWrapper}
+                    variants={staggerItem}
+                >
+                    <a
+                        href="https://cal.com/deepak-hidevs/30-min-meeting"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={coreOfferingsStyles.ctaButton}
+                    >
+                        connect now
+                    </a>
+                </motion.div>
             </div>
         </motion.div>
     );

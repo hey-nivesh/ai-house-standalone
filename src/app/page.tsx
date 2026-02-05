@@ -240,7 +240,7 @@ export default function Home() {
               )}
             </AnimatePresence>
 
-            <OverlayWrapper>
+            <HeroOverlayWrapper>
               <MainHeadingWrapper
                 as={motion.div}
                 variants={fadeUpVariant}
@@ -294,21 +294,26 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.4, ease: "easeOut", delay: 0.2 }}
                 >
-                  An always-free community home for tech builders.
+                  A community home for tech builders.
                 </Message>
 
-                <motion.div
+                <ButtonContainer
+                  as={motion.div}
                   initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.45, ease: "easeOut", delay: 0.5 }}
-                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
                 >
                   <Link href="https://docs.google.com/forms/d/e/1FAIpQLScmGt3e2pM9ltxuTGf_G2__FePkX4HIOI-BvxfnOZBK5WcsrA/viewform" target="_blank" rel="noopener noreferrer">
                     <MidCTAButton>
                       Join now
                     </MidCTAButton>
                   </Link>
-                </motion.div>
+                  <Link href="https://luma.com/ai_house?k=c" target="_blank" rel="noopener noreferrer">
+                    <SecondaryCTAButton>
+                      see upcoming events
+                    </SecondaryCTAButton>
+                  </Link>
+                </ButtonContainer>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
@@ -316,35 +321,14 @@ export default function Home() {
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.4, ease: "easeOut", delay: 0.8 }}
                   style={{
-                    marginBottom: "2rem",
                     width: "100%",
                   }}
                 >
-                  <CardsWrapper ref={statsRef}>
-                    {stats.map((stat, index) => (
-                      <Card
-                        key={index}
-                        style={{
-                          transform: `translate(${cardVariants[index % cardVariants.length].x || 0}px, ${cardVariants[index % cardVariants.length].y || 0}px) scale(${cardVariants[index % cardVariants.length].scale || 1}) rotate(${cardVariants[index % cardVariants.length].rotate || 0}deg)`,
-                          zIndex: cardVariants[index % cardVariants.length].zIndex || 1,
-                        }}
-                      >
-                        <p>
-                          {isStatsInView ? (
-                            <CountingNumber value={stat.value} suffix="+" />
-                          ) : (
-                            `${stat.value}+`
-                          )}
-                        </p>
-                        <p>{stat.label}</p>
-                      </Card>
-                    ))}
-                  </CardsWrapper>
                 </motion.div>
 
 
               </MainHeadingWrapper>
-            </OverlayWrapper>
+            </HeroOverlayWrapper>
           </HeroSection>
           {/* AI House Description Section */}
           <motion.div
@@ -393,15 +377,18 @@ export default function Home() {
           <OverlayWrapper>
             <HowWeHelpCarousel />
             <PartneredWith />
-            <MatrixShowcase>
-              <Image
-                src="/matrix_showcasing.png"
-                alt="Matrix Showcase"
-                width={1920}
-                height={1080}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </MatrixShowcase>
+            <MatrixWrapper>
+              <MatrixTitle>our impact from ai house</MatrixTitle>
+              <MatrixShowcase>
+                <Image
+                  src="/matrix_showcasing.png"
+                  alt="Matrix Showcase"
+                  width={1920}
+                  height={1080}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </MatrixShowcase>
+            </MatrixWrapper>
             <LearningPlatformUI />
             <LinkedInShowcase />
             <CoreOfferingsSection />
@@ -500,6 +487,8 @@ const HeroSection = styled.section`
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   
   /* Overlay for better text readability */
   &::before {
@@ -742,6 +731,12 @@ const OverlayWrapper = styled.div`
   }
 `;
 
+const HeroOverlayWrapper = styled(OverlayWrapper)`
+  justify-content: center;
+  flex: 1;
+  z-index: 10;
+`;
+
 const MainHeadingWrapper = styled(motion.div)`
   margin-top: 1rem;
   display: flex;
@@ -751,11 +746,13 @@ const MainHeadingWrapper = styled(motion.div)`
   font-family: var(--font-geist-sans), sans-serif;
   font-weight: 600;
   font-size: clamp(1.8rem, 6vw, 3rem);
-  line-height: 130%;
-  letter-spacing: 0%;
+  line-height: normal;
+  letter-spacing: 0.02em;
   width: 100%;
   text-align: center;
   padding: 0 0.5rem;
+  z-index: 10;
+  margin-bottom: 4rem;
 
   @media (min-width: 480px) {
     margin-top: 1.25rem;
@@ -865,6 +862,29 @@ const MidCTAButton = styled.button`
     min-width: max-content;
   }
 `;
+
+const SecondaryCTAButton = styled(MidCTAButton)`
+  background-color: transparent;
+  border: 2px solid #724e99;
+  color: #fff;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: rgba(114, 78, 153, 0.2);
+    border-color: #5d3a7b;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  width: 100%;
+`;
+
 
 const CTASection = styled.section`
   width: 100%;
@@ -1141,6 +1161,26 @@ const AIHouseDescription = styled.p`
 const Highlight = styled.span`
   color: #7413cfff;
   font-weight: 600;
+`;
+
+const MatrixWrapper = styled.section`
+  width: 100%;
+  padding: 4rem 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MatrixTitle = styled.h2`
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  font-family: var(--font-geist-sans), sans-serif;
+  text-align: center;
+  padding: 0 1rem;
+  text-transform: capitalize;
 `;
 
 const MatrixShowcase = styled.div`
