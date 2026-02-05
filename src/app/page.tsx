@@ -310,7 +310,7 @@ export default function Home() {
                   </Link>
                   <Link href="https://luma.com/ai_house?k=c" target="_blank" rel="noopener noreferrer">
                     <SecondaryCTAButton>
-                      see upcoming events
+                      See upcoming events
                     </SecondaryCTAButton>
                   </Link>
                 </ButtonContainer>
@@ -418,7 +418,7 @@ export default function Home() {
                   <br /><br />
                   100% free. No credit card. No catch.
                 </CTADescription>
-                <Link href="https://docs.google.com/forms/d/e/1FAIpQLScmGt3e2pM9ltxuTGf_G2__FePkX4HIOI-BvxfnOZBK5WcsrA/viewform" target="_blank" rel="noopener noreferrer">
+                <Link href="https://cal.com/deepak-hidevs/30-min-meeting" target="_blank" rel="noopener noreferrer">
                   <CTAButton
                     as={motion.button}
                     whileHover={{ scale: 1.02 }}

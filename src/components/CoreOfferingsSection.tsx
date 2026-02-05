@@ -174,7 +174,7 @@ const CoreOfferingsSection: React.FC = () => {
                         rel="noopener noreferrer"
                         className={coreOfferingsStyles.ctaButton}
                     >
-                        connect now
+                        Connect now
                     </a>
                 </motion.div>
             </div>
