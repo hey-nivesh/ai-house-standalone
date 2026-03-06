@@ -125,14 +125,14 @@ export default LinkedInShowcase;
 const SectionContainer = styled.section`
   width: 100%;
   max-width: 1400px;
-  margin: 1.5rem auto;
+  margin: 0.5rem auto;
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (max-width: 768px) {
-    margin: 1rem auto;
+    margin: 0.5rem auto;
   }
 `;
 

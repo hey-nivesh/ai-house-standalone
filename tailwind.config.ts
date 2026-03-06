@@ -15,6 +15,11 @@ export default {
                 primary: "#6b21aa",
                 "purple-light": "#f5f3ff",
                 "purple-medium": "#9333ea",
+                "impact-primary": "#6b21aa",
+                "impact-primary-hover": "#581c87",
+                "impact-border": "rgba(107, 33, 170, 0.2)",
+                "impact-headline": "#1f2937",
+                "impact-card": "#ffffff",
             },
             animation: {
                 "slide-down": "slide-down 300ms cubic-bezier(0.87, 0, 0.13, 1)",

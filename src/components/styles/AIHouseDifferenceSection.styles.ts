@@ -4,7 +4,7 @@
  */
 
 export const differenceStyles = {
-    section: "bg-white py-6 md:py-10 px-4 md:px-8 overflow-hidden",
+    section: "bg-white pt-2 pb-4 md:pt-4 md:pb-6 px-4 md:px-8 overflow-hidden",
     container: "max-w-[1600px] mx-auto px-4 md:px-8",
     grid: "grid lg:grid-cols-2 gap-12 md:gap-20 lg:gap-24 items-center",
 

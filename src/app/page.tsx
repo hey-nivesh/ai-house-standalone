@@ -17,6 +17,7 @@ import WorkshopsFAQ from "@/components/WorkshopsFAQ";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import dynamic from "next/dynamic";
+import ImpactPreview from "@/components/impact/ImpactPreview";
 
 // Simple skeleton placeholder used before sections mount
 const SectionSkeleton = ({ minHeight = 420 }: { minHeight?: number }) => (
@@ -308,7 +309,7 @@ export default function Home() {
                       Join now
                     </MidCTAButton>
                   </Link>
-                  <Link href="https://luma.com/ai_house?k=c" target="_blank" rel="noopener noreferrer">
+                  <Link href="/impact">
                     <SecondaryCTAButton>
                       See upcoming events
                     </SecondaryCTAButton>
@@ -391,6 +392,7 @@ export default function Home() {
             </MatrixWrapper>
             <LearningPlatformUI />
             <LinkedInShowcase />
+            <ImpactPreview />
             <CoreOfferingsSection />
             <LazySection>
               <ImageCarouselDynamic />
@@ -1165,7 +1167,7 @@ const Highlight = styled.span`
 
 const MatrixWrapper = styled.section`
   width: 100%;
-  padding: 4rem 0;
+  padding: 1.5rem 0;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -1176,7 +1178,7 @@ const MatrixTitle = styled.h2`
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   color: #1a1a1a;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   font-family: var(--font-geist-sans), sans-serif;
   text-align: center;
   padding: 0 1rem;

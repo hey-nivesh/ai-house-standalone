@@ -52,8 +52,8 @@ const cards = [
 const Container = styled.div`
   padding: 1rem 2rem;
   min-height: auto;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 
   @media (max-width: 768px) {
     padding: 0.5rem 0.75rem;

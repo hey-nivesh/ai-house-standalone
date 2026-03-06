@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Twitter } from "lucide-react";
 const Footer = () => {
   const exploreLinks = [
     { title: "Home", href: "https://www.hidevs.xyz" },
-    { title: "AI House", href: "https://www.aihouze.xyz" },
+    { title: "AI House", href: "https://www.aiHouse.xyz" },
     { title: "About Us", href: "https://www.hidevs.xyz/aboutus" },
     { title: "City Lead", href: "https://www.hidevs.xyz/city-lead" },
   ];

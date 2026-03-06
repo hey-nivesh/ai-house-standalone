@@ -17,7 +17,7 @@ const ImageCarousel = () => {
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     // Images for Top Row (Mixed)
-        const topRowImages = [
+    const topRowImages = [
         '/workshop/PXL_20250530_121051474.jpeg',
         '/workshop/WhatsApp Image 2025-02-28 at 10.42.47.jpeg',
         '/cohort-workshop/collage.jpg',
@@ -57,7 +57,7 @@ const ImageCarousel = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative py-16 md:py-24 bg-white overflow-hidden"
+            className="relative py-4 md:py-6 bg-white overflow-hidden"
         >
             <motion.div
                 style={{
