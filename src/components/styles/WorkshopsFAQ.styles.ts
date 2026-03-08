@@ -4,7 +4,7 @@
  */
 
 export const faqStyles = {
-    section: "w-full max-w-[1200px] mx-auto my-4 md:my-8 px-4 md:px-6",
+    section: "w-full max-w-[1200px] mx-auto mt-0 mb-4 md:mb-8 px-4 md:px-6",
     container: "w-full mx-auto",
     title: "text-center font-bold text-[#1a1a1a] mb-8 md:mb-12 text-3xl md:text-4xl lg:text-5xl",
     faqList: "flex flex-col gap-4",

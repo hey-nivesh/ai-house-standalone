@@ -21,6 +21,7 @@ import dynamic from "next/dynamic";
 import CommunityStats from "@/components/CommunityStats";
 import EventsSection from "@/components/EventsSection";
 import LBLIntroSection from "@/components/LBLIntroSection";
+import Timeline from "@/components/Timeline";
 
 // Simple skeleton placeholder used before sections mount
 const SectionSkeleton = ({ minHeight = 420 }: { minHeight?: number }) => (
@@ -165,30 +166,27 @@ export default function Home() {
           <LoadingScreen onComplete={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
-
-      {!isLoading && (
+      <main>
         <Wrapper
           as={motion.div}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: isLoading ? 0 : 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{ visibility: isLoading ? 'hidden' : 'visible', height: isLoading ? '100vh' : 'auto', overflow: isLoading ? 'hidden' : 'visible' }}
         >
-          <AnimatePresence mode="wait">
-            {isLoading && (
-              <LoadingScreen onComplete={() => setIsLoading(false)} />
-            )}
-          </AnimatePresence>
           {/* Hero Section with Background Video */}
           <HeroSection>
-            <VideoBackground
-              autoPlay
-              muted
-              loop
-              playsInline
-            >
-              <source src="/hero.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </VideoBackground>
+            <VideoBackgroundWrapper>
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/hero.mp4" type="video/mp4" />
+              </video>
+            </VideoBackgroundWrapper>
             {/* Navbar with transparent background showing hero image */}
             <Navbar>
               <NavContainer>
@@ -329,8 +327,6 @@ export default function Home() {
                   }}
                 >
                 </motion.div>
-
-
               </MainHeadingWrapper>
             </HeroOverlayWrapper>
           </HeroSection>
@@ -394,12 +390,13 @@ export default function Home() {
               </MatrixShowcase>
             </MatrixWrapper>
             <LearningPlatformUI />
+            <EventsSection />
             <CommunityStats />
             <LBLIntroSection />
+            <Timeline />
             <LinkedInShowcase />
-            <EventsSection />
             {/* <ImpactPreview /> */}
-            <CoreOfferingsSection />
+            {/* <CoreOfferingsSection /> */}
             <LazySection>
               <ImageCarouselDynamic />
             </LazySection>
@@ -475,9 +472,8 @@ export default function Home() {
             </LocationSection>
           </OverlayWrapper>
           <Footer />
-        </Wrapper >
-      )
-      }
+        </Wrapper>
+      </main>
     </>
   );
 }
@@ -494,6 +490,7 @@ const HeroSection = styled.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -538,14 +535,21 @@ const HeroSection = styled.section`
   }
 `;
 
-const VideoBackground = styled.video`
+const VideoBackgroundWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const Navbar = styled.nav`
@@ -569,15 +573,15 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
 
-  @media (max-width: 768px) {
-    padding: 0.75rem 1rem;
+  @media (min-width: 768px) {
+    padding: 1rem 2rem;
   }
 `;
 
@@ -726,7 +730,7 @@ const OverlayWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   max-width: 100%;
   overflow: hidden;
 
@@ -758,7 +762,7 @@ const MainHeadingWrapper = styled(motion.div)`
   letter-spacing: 0.02em;
   width: 100%;
   text-align: center;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   z-index: 10;
   margin-bottom: 4rem;
 
@@ -1157,11 +1161,10 @@ const AIHouseDescription = styled.p`
   margin-bottom: 1.25rem;
   line-height: 1.7;
   font-family: var(--font-geist-sans), sans-serif;
-  text-align: left;
+  text-align: center;
   padding: 0 1rem;
 
   @media (min-width: 768px) {
-    text-align: center;
     padding: 0 2rem;
   }
 `;
@@ -1173,11 +1176,15 @@ const Highlight = styled.span`
 
 const MatrixWrapper = styled.section`
   width: 100%;
-  padding: 4rem 0;
+  padding: 2rem 0;
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: 768px) {
+    padding: 4rem 0;
+  }
 `;
 
 const MatrixTitle = styled.h2`

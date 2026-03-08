@@ -1,102 +1,58 @@
 "use client";
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from "framer-motion";
-import { zoomInOut, viewportOptionsFast } from "@/lib/animations";
+import React from "react";
+import dynamic from "next/dynamic";
+import { GlobeMarker } from "@/components/ui/3d-globe";
 import { worldMapStyles } from './styles/WorldMapSection.styles';
-import Image from 'next/image';
-import styled from 'styled-components';
 
-const MapWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  overflow: visible;
+const Globe3D = dynamic(() => import("@/components/ui/3d-globe").then(mod => mod.Globe3D), {
+    ssr: false,
+});
 
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-    max-width: 100%;
-  }
-`;
-
-const MapImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-// Cleaned up unused styles
+const sampleMarkers: GlobeMarker[] = [
+    { lat: 37.7749, lng: -122.4194, src: "https://assets.aceternity.com/avatars/1.webp" }, // San Francisco
+    { lat: 12.9716, lng: 77.5946, src: "https://assets.aceternity.com/avatars/2.webp" }, // Karnataka (Bangalore)
+    { lat: 17.3850, lng: 78.4867, src: "https://assets.aceternity.com/avatars/3.webp" }, // Telangana (Hyderabad)
+    { lat: 23.2599, lng: 77.4126, src: "https://assets.aceternity.com/avatars/4.webp" }, // Madhya Pradesh
+    { lat: 28.6139, lng: 77.2090, src: "https://assets.aceternity.com/avatars/5.webp" }, // Delhi
+    { lat: 22.5726, lng: 88.3639, src: "https://assets.aceternity.com/avatars/6.webp" }, // Kolkata
+];
 
 export default function WorldMapSection() {
-    const sectionRef = useRef<HTMLDivElement>(null);
-
-    // Scroll-based animations
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
-
-    const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1.05, 0.95]);
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]);
-
     return (
-        <motion.div
-            ref={sectionRef}
-            className={worldMapStyles.section}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptionsFast}
-            variants={zoomInOut}
-            style={{
-                willChange: 'transform, opacity',
-                transform: 'translateZ(0)',
-                paddingBottom: '4rem'
-            }}
-        >
-            <motion.div
-                style={{
-                    scale,
-                    opacity,
-                    willChange: 'transform, opacity',
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
+        <section className={worldMapStyles.section}>
+            <div className="flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-4">
                 <div className={worldMapStyles.textContainer}>
-                    <p className={worldMapStyles.title}>
-                        HiDevs AI House is where AI builders
-                        <span className={worldMapStyles.highlight}> stop learning in isolation </span>
-                        and start building in the real world.
+                    <h2 className={worldMapStyles.title}>
+                        Accross the <span className={worldMapStyles.highlight}>Nation</span>
+                    </h2>
+                    <p className="text-lg text-[#724e99] mt-4 mb-8 max-w-xl text-center opacity-80">
+                        We're available in San Francisco, Karnataka, Telangana, Madhya Pradesh, Delhi, and Kolkata.
                     </p>
                 </div>
 
-                <MapWrapper>
-                    <MapImageContainer>
-                        <Image
-                            src="/indian_map.png"
-                            alt="India Map"
-                            width={1200}
-                            height={800}
-                            priority
-                            style={{
-                                width: '100%',
-                                height: 'auto',
-                                objectFit: 'contain',
-                                zIndex: 1,
-                            }}
-                        />
-                    </MapImageContainer>
-                </MapWrapper>
-            </motion.div>
-        </motion.div>
+                <div className="relative w-full max-w-5xl aspect-square bg-transparent overflow-hidden flex items-center justify-center">
+                    <Globe3D
+                        markers={sampleMarkers}
+                        className="w-full h-full"   
+                        config={{
+                            radius: 4.5, // Increased to fill the square
+                            autoRotateSpeed: 0.5,
+                            ambientIntensity: 6.0,
+                            pointLightIntensity: 12.0,
+                            globeColor: "#ffffff",
+                        }}
+                        onMarkerClick={(marker) => {
+                            console.log("Clicked marker:", marker.label);
+                        }}
+                        onMarkerHover={(marker) => {
+                            if (marker) {
+                                console.log("Hovering:", marker.label);
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        </section>
     );
 }
+

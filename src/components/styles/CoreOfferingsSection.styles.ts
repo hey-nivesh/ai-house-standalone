@@ -9,10 +9,10 @@ export const coreOfferingsStyles = {
     grid: "grid lg:grid-cols-2 gap-12 md:gap-20 lg:gap-24 items-center",
 
     // Image container
-    imageContainer: "relative h-[400px] md:h-[600px] w-full",
-    circleLarge: "absolute top-0 left-0 md:left-4 w-48 h-48 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-2 md:border-4 border-[#eadff5] transition-transform duration-700 hover:scale-105",
-    circleMedium: "absolute top-8 md:top-12 right-4 md:right-8 w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden shadow-xl border-2 md:border-4 border-[#e3d3f2] transition-transform duration-700 hover:scale-105",
-    circleBottom: "absolute bottom-12 md:bottom-20 left-28 md:left-48 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl border-2 md:border-4 border-[#eadff5] transition-transform duration-700 hover:scale-105",
+    imageContainer: "relative h-[300px] md:h-[600px] w-full",
+    circleLarge: "absolute top-0 left-0 md:left-4 w-36 h-36 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-2 md:border-4 border-[#eadff5] transition-transform duration-700 hover:scale-105",
+    circleMedium: "absolute top-4 md:top-12 right-2 md:right-8 w-24 h-24 md:w-56 md:h-56 rounded-full overflow-hidden shadow-xl border-2 md:border-4 border-[#e3d3f2] transition-transform duration-700 hover:scale-105",
+    circleBottom: "absolute bottom-8 md:bottom-20 left-1/4 md:left-48 w-28 h-28 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl border-2 md:border-4 border-[#eadff5] transition-transform duration-700 hover:scale-105",
     overlay: "absolute inset-0 bg-[#724e99]/10",
 
     // Content

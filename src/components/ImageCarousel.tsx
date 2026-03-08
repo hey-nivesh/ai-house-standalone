@@ -16,21 +16,7 @@ const ImageCarousel = () => {
     const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.1, 0.8]);
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-    // Images for Top Row (Mixed)
     const topRowImages = [
-        '/workshop/PXL_20250530_121051474.jpeg',
-        '/workshop/WhatsApp Image 2025-02-28 at 10.42.47.jpeg',
-        '/cohort-workshop/collage.jpg',
-        '/workshop/IMG_6004.JPG',
-        '/workshop/DSC_0333.JPG',
-        '/cohort-workshop/IMG20250523122224_01.jpg',
-        '/lbl/DSC_0209.JPG',
-        '/cohort-workshop/jury.jpeg',
-        '/ai-house/DSC_0044.jpg',
-        '/workshop/IMG20241115143037.png',
-        '/workshop/DSC_0313.JPG',
-        '/workshop/DSC01978.png',
-        '/workshop/IMG_7337.jpeg',
         '/workshop/20250928_105809.jpg',
         '/new_event_images/DSC_0598.jpg',
         '/open_Claw_event/WhatsApp Image 2026-03-01 at 00.43.02.jpeg',
@@ -49,7 +35,6 @@ const ImageCarousel = () => {
         '/workshop/DSC_0333.JPG',
         '/new_event_images/DSC_0606.jpg',
         '/open_Claw_event/WhatsApp Image 2026-03-01 at 00.43.04 (1).jpeg',
-        '/cohort-workshop/IMG-20241119-WA0006.jpg',
         '/ai-house/20251219_191055.jpg',
     ];
 
@@ -59,12 +44,10 @@ const ImageCarousel = () => {
         '/open_Claw_event/WhatsApp Image 2026-03-01 at 00.43.04.jpeg',
         '/cohort-workshop/IMG20250523122224_01.jpg',
         '/ai-house/20251219_191527.jpg',
-        '/workshop/IMG-20241119-WA0010.jpeg',
         '/new_event_images/DSC_0609.jpg',
         '/open_Claw_event/WhatsApp Image 2026-03-01 at 00.43.05.jpeg',
         '/cohort-workshop/IMG_20241111_100744.jpg',
         '/ai-house/20251219_192623.jpg',
-        '/workshop/IMG-20241119-WA0012.png',
         '/new_event_images/DSC_0615.jpg',
         '/open_Claw_event/WhatsApp Image 2026-03-01 at 00.43.03.jpeg',
         '/cohort-workshop/IMG_20241114_144015.jpg',

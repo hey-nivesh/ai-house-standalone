@@ -76,19 +76,20 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    // Cycle through steps every 200ms
+    // Speed up steps - 120ms per step
     const interval = setInterval(() => {
       setCurrentStep((prev) => {
         if (prev < loadingSteps.length - 1) {
           return prev + 1;
         }
         clearInterval(interval);
+        // Reduce final timeout: 400ms instead of 800ms
         setTimeout(() => {
           if (onComplete) onComplete();
-        }, 800);
+        }, 400);
         return prev;
       });
-    }, 200);
+    }, 120);
 
     return () => clearInterval(interval);
   }, [onComplete]);
