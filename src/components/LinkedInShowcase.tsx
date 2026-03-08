@@ -131,7 +131,7 @@ const VideoCard = ({ videoId, apiReady }: { videoId: string; apiReady: boolean }
             {isMuted ? (
               <>
                 <VolumeX size={18} />
-                <span>Open Voice</span>
+                <span>Unmute</span>
               </>
             ) : (
               <>
