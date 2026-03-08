@@ -71,7 +71,7 @@ const Title = styled.h2`
   text-align: center;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -109,23 +109,35 @@ const EventsGrid = styled.div`
 
 const MobileContainer = styled.div`
   display: none;
-  position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 
   @media (max-width: 768px) {
     display: block;
+    margin: 0 -1rem; /* Negative margin to bleed to edges */
+    padding: 0 1rem;
+    width: calc(100% + 2rem);
   }
 `;
 
-const MobileSlider = styled(motion.div)`
+const MobileSlider = styled.div`
   display: flex;
-  width: 100%;
+  gap: 1rem;
+  padding-bottom: 1rem;
 `;
 
 const MobileCardWrapper = styled.div`
-  flex: 0 0 100%;
-  padding: 0 0.5rem;
+  flex: 0 0 280px; /* Fixed width for better scroll experience */
+  
+  &:last-child {
+    padding-right: 1.5rem; /* Extra space at the end */
+  }
 `;
 
 const CardShadow = "0 10px 30px rgba(114, 78, 153, 0.06), 0 4px 10px rgba(114, 78, 153, 0.04)";
@@ -172,6 +184,10 @@ const CardContent = styled.div`
   justify-content: space-between;
   gap: 0.75rem;
   flex: 1;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
 `;
 
 const InfoCol = styled.div`
@@ -234,48 +250,10 @@ const DayNumber = styled.span`
   font-weight: 800;
   color: #1a1a1a;
   line-height: 1;
-`;
 
-const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-`;
-
-const IconButton = styled.button`
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: #f3ebfa;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #724e99;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #724e99;
-    color: white;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
   }
-`;
-
-const Dots = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-const Dot = styled.button<{ $active: boolean }>`
-  width: ${props => props.$active ? "1.5rem" : "0.5rem"};
-  height: 0.5rem;
-  border-radius: 1rem;
-  background: ${props => props.$active ? "#724e99" : "#e3d3f2"};
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
 `;
 
 const CTAContainer = styled.div`
@@ -338,15 +316,11 @@ const EventCard = ({ event }: { event: typeof events[0] }) => (
 );
 
 const EventsSection = () => {
-  const [current, setCurrent] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  const next = () => setCurrent((c) => (c === events.length - 1 ? 0 : c + 1));
-  const prev = () => setCurrent((c) => (c === 0 ? events.length - 1 : c - 1));
 
   if (!isMounted) return null;
 
@@ -364,35 +338,13 @@ const EventsSection = () => {
       </EventsGrid>
 
       <MobileContainer>
-        <MobileSlider
-          animate={{ x: `-${current * 100}%` }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        >
+        <MobileSlider>
           {events.map((event, i) => (
             <MobileCardWrapper key={`mobile-${i}`}>
               <EventCard event={event} />
             </MobileCardWrapper>
           ))}
         </MobileSlider>
-
-        <Controls>
-          <IconButton onClick={prev} aria-label="Previous event">
-            <ChevronLeft size={20} />
-          </IconButton>
-          <Dots>
-            {events.map((_, i) => (
-              <Dot
-                key={`dot-${i}`}
-                $active={i === current}
-                onClick={() => setCurrent(i)}
-                aria-label={`Go to event ${i + 1}`}
-              />
-            ))}
-          </Dots>
-          <IconButton onClick={next} aria-label="Next event">
-            <ChevronRight size={20} />
-          </IconButton>
-        </Controls>
       </MobileContainer>
 
       <CTAContainer>

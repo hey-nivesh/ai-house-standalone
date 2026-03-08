@@ -31,19 +31,20 @@ const Title = styled.h2`
   text-align: center;
   
   @media (max-width: 768px) {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 `;
 
@@ -82,7 +83,9 @@ const MapCard = styled.div`
 
   @media (max-width: 768px) {
     grid-row: auto;
-    min-height: 450px;
+    grid-column: span 2;
+    min-height: 350px;
+    padding: 1.5rem;
   }
 `;
 
@@ -145,7 +148,7 @@ const StatCardWrapper = styled.div`
 
   @media (max-width: 768px) {
     min-height: auto;
-    padding: 1.75rem;
+    padding: 1.25rem 1rem;
   }
 `;
 
@@ -159,7 +162,7 @@ const StatValue = styled.p`
   z-index: 1;
   
   @media (max-width: 768px) {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 `;
 
@@ -185,9 +188,10 @@ const IconCircle = styled.div`
   z-index: 2;
   position: relative;
 
-  ${StatCardWrapper}:hover & {
-    background: #724e99;
-    transform: scale(1.1);
+  @media (max-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 1rem;
   }
 `;
 

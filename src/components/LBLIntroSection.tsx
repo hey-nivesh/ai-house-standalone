@@ -24,19 +24,17 @@ const LogoGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem 4rem;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1rem;
   align-items: center;
 
   @media (max-width: 768px) {
-    gap: 2rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 1rem;
+    padding: 1.5rem 0.75rem;
   }
 
-  @media (max-width: 480px) {
-    gap: 1.5rem 2rem;
-  }
+
 `;
 
 const LogoItem = styled.div`
@@ -49,8 +47,8 @@ const LogoItem = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    max-width: 100px;
-    height: 50px;
+    max-width: 80px;
+    height: 40px;
   }
 `;
 
@@ -86,9 +84,9 @@ const TextContainer = styled.div`
 
 const Title = styled.h2`
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   color: #1a1a1a;
-  line-height: 1.2;
+  line-height: 1.3;
   padding: 0 1rem;
 
   @media (min-width: 768px) {
