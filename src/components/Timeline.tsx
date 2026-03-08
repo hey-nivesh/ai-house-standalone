@@ -171,9 +171,9 @@ const Timeline = () => {
                 {/* Cards */}
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 min-h-0 items-center">
                     {currentEvents.map((event, i) => (
-                        <div key={page * perPage + i} className="flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start text-center md:text-left animate-in fade-in slide-in-from-bottom-2 duration-700">
+                        <div key={page * perPage + i} className="flex flex-row-reverse md:flex-row gap-4 md:gap-6 items-center md:items-start text-left md:text-left animate-in fade-in slide-in-from-bottom-2 duration-700">
                             {/* Image - Improved container and handling */}
-                            <div className="flex-shrink-0 w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl bg-muted/30 p-2 flex items-center justify-center overflow-hidden border border-border/50 shadow-sm relative">
+                            <div className="flex-shrink-0 w-20 h-20 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl bg-muted/30 p-2 flex items-center justify-center overflow-hidden border border-border/50 shadow-sm relative">
                                 <img
                                     src={event.image}
                                     alt={event.title}
@@ -186,13 +186,13 @@ const Timeline = () => {
                             </div>
                             {/* Text */}
                             <div className="flex flex-col justify-center min-w-0 flex-1">
-                                <div className="flex items-center gap-2 justify-center md:justify-start mb-1">
+                                <div className="flex items-center gap-2 justify-start md:justify-start mb-1">
                                     <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded">
                                         {event.date}
                                     </span>
                                 </div>
-                                <h3 className="text-base md:text-xl font-bold text-foreground mb-1 md:mb-2 leading-tight">{event.title}</h3>
-                                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-3 md:line-clamp-4">{event.description}</p>
+                                <h3 className="text-sm md:text-xl font-bold text-foreground mb-1 md:mb-2 leading-tight">{event.title}</h3>
+                                <p className="text-[11px] md:text-sm text-muted-foreground leading-relaxed line-clamp-3 md:line-clamp-4">{event.description}</p>
                             </div>
                         </div>
                     ))}

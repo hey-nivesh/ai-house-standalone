@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import styled from 'styled-components';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselItem {
     id: string;
@@ -36,53 +39,100 @@ const items: CarouselItem[] = [
     }
 ];
 
+const MobileContainer = styled.div`
+  display: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileSlider = styled(motion.div)`
+  display: flex;
+  width: 100%;
+`;
+
+const MobileCardWrapper = styled.div`
+  flex: 0 0 100%;
+  padding: 0 12.5%;
+`;
+
+const DesktopView = styled.div`
+  display: block;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+`;
+
+const IconButton = styled.button`
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #f3ebfa;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #724e99;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #724e99;
+    color: white;
+  }
+`;
+
+const Dots = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const Dot = styled.button<{ $active: boolean }>`
+  width: ${props => props.$active ? "1.5rem" : "0.5rem"};
+  height: 0.5rem;
+  border-radius: 1rem;
+  background: ${props => props.$active ? "#724e99" : "#e3d3f2"};
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+`;
+
 const HowWeHelpCarousel: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
 
-    // Detect mobile screen size
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            { threshold: 0.5 }
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-            if (containerRef.current) {
-                observer.unobserve(containerRef.current);
-            }
-        };
+        setIsMounted(true);
     }, []);
 
-    const handleCardClick = (index: number) => {
-        setActiveIndex(index);
-    };
-
     const handlePrevious = () => {
-        const newIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-        setActiveIndex(newIndex);
+        setActiveIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
     };
 
     const handleNext = () => {
-        const newIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-        setActiveIndex(newIndex);
+        setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
     };
+
+    useEffect(() => {
+        if (isMounted) {
+            const interval = setInterval(handleNext, 5000);
+            return () => clearInterval(interval);
+        }
+    }, [isMounted]);
+
+    if (!isMounted) return null;
 
     const getCardStyle = (index: number) => {
         // Desktop: expandable cards
@@ -103,7 +153,7 @@ const HowWeHelpCarousel: React.FC = () => {
                     scrollbar-width: none;
                 }
             `}</style>
-            <div ref={containerRef} className="min-h-fit bg-white pb-2 sm:pb-4 md:pb-6 pt-0 px-2 sm:px-4">
+            <div className="min-h-fit bg-white pb-2 sm:pb-4 md:pb-6 pt-0 px-2 sm:px-4">
                 <div className="max-w-[1400px] mx-auto">
                     {/* Header */}
                     <div className="text-center mb-4 sm:mb-6 md:mb-8">
@@ -111,49 +161,69 @@ const HowWeHelpCarousel: React.FC = () => {
                         <h1 className="text-[#1a1a1a] text-2xl sm:text-3xl md:text-6xl font-bold leading-tight">Who HiDevs AI House Is For</h1>
                     </div>
 
-                    {/* Mobile Single Card View */}
-                    {isMobile ? (
-                        <div className="flex justify-center items-center px-4">
-                            <div className="w-full max-w-[90vw] rounded-2xl h-[450px] overflow-hidden shadow-lg relative">
-                                <div className="relative h-full w-full">
-                                    {/* Background Image */}
-                                    <Image
-                                        src={items[activeIndex].image}
-                                        alt={items[activeIndex].title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="90vw"
-                                        priority
-                                    />
-
-                                    {/* Content */}
-                                    <div className="absolute inset-0 flex flex-col justify-end p-5 z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
-                                        <div className="animate-fadeIn">
-                                            <h3 className="text-white text-xl font-bold mb-3">{items[activeIndex].title}</h3>
-                                            <div className="text-[#eadff5] text-sm font-medium leading-relaxed whitespace-pre-line">
-                                                {items[activeIndex].description}
+                    {/* Mobile Slider View */}
+                    <MobileContainer>
+                        <MobileSlider
+                            animate={{ x: `-${activeIndex * 100}%` }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        >
+                            {items.map((item, index) => (
+                                <MobileCardWrapper key={`mobile-${index}`}>
+                                    <div className="w-full rounded-2xl h-[450px] overflow-hidden shadow-lg relative">
+                                        <div className="relative h-full w-full">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="90vw"
+                                                priority={index === 0}
+                                            />
+                                            <div className="absolute inset-0 flex flex-col justify-end p-5 z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-left">
+                                                <div className="animate-fadeIn">
+                                                    <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
+                                                    <div className="text-[#eadff5] text-sm font-medium leading-relaxed whitespace-pre-line">
+                                                        {item.description}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        // Desktop Carousel
+                                </MobileCardWrapper>
+                            ))}
+                        </MobileSlider>
+
+                        <Controls>
+                            <IconButton onClick={handlePrevious} aria-label="Previous">
+                                <ChevronLeft size={20} />
+                            </IconButton>
+                            <Dots>
+                                {items.map((_, i) => (
+                                    <Dot
+                                        key={`dot-${i}`}
+                                        $active={i === activeIndex}
+                                        onClick={() => setActiveIndex(i)}
+                                        aria-label={`Go to slide ${i + 1}`}
+                                    />
+                                ))}
+                            </Dots>
+                            <IconButton onClick={handleNext} aria-label="Next">
+                                <ChevronRight size={20} />
+                            </IconButton>
+                        </Controls>
+                    </MobileContainer>
+
+                    {/* Desktop Carousel */}
+                    <DesktopView>
                         <div className="flex justify-center items-center">
-                            <div
-                                ref={carouselRef}
-                                className="flex gap-4 items-stretch"
-                            >
+                            <div className="flex gap-4 items-stretch">
                                 {items.map((item, index) => (
                                     <div
                                         key={item.id}
-                                        data-card-index={index}
-                                        onClick={() => handleCardClick(index)}
+                                        onClick={() => setActiveIndex(index)}
                                         className={`${getCardStyle(index)} flex-shrink-0 rounded-2xl md:rounded-3xl h-[450px] md:h-[600px] overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-lg relative`}
                                     >
                                         <div className="relative h-full w-full">
-                                            {/* Background Image */}
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -161,19 +231,15 @@ const HowWeHelpCarousel: React.FC = () => {
                                                 className="object-cover"
                                                 sizes="460px"
                                             />
-
-                                            {/* Content */}
                                             <div className={`absolute inset-0 flex flex-col justify-end p-5 md:p-8 z-10 ${index === activeIndex ? 'bg-gradient-to-t from-black/70 via-black/30 to-transparent' : 'bg-black/40'}`}>
                                                 {index === activeIndex ? (
-                                                    // Expanded View
                                                     <div className="animate-fadeIn">
                                                         <h3 className="text-white text-xl md:text-3xl font-bold mb-2 md:mb-4">{item.title}</h3>
-                                                        <div className="text-[#eadff5] text-xs md:text-base font-medium leading-relaxed whitespace-pre-line">
+                                                        <div className="text-[#eadff5] text-xs md:text-base font-medium leading-relaxed whitespace-pre-line text-left">
                                                             {item.description}
                                                         </div>
                                                     </div>
                                                 ) : (
-                                                    // Collapsed View - vertical text
                                                     <h3
                                                         className="text-white font-bold text-base md:text-2xl transform origin-bottom-left pb-4 md:pb-0"
                                                         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
@@ -182,54 +248,28 @@ const HowWeHelpCarousel: React.FC = () => {
                                                     </h3>
                                                 )}
                                             </div>
-
-                                            {/* Hover Effect Overlay */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                    )}
 
-                    {/* Mobile Arrow Navigation */}
-                    {isMobile && (
-                        <div className="flex justify-center items-center gap-6 mt-6">
-                            <button
-                                onClick={handlePrevious}
-                                className="w-12 h-12 rounded-full bg-[#724e99] text-white flex items-center justify-center shadow-lg hover:bg-[#5c3d7a] transition-colors duration-300 active:scale-95"
-                                aria-label="Previous slide"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                </svg>
-                            </button>
-                            <button
-                                onClick={handleNext}
-                                className="w-12 h-12 rounded-full bg-[#724e99] text-white flex items-center justify-center shadow-lg hover:bg-[#5c3d7a] transition-colors duration-300 active:scale-95"
-                                aria-label="Next slide"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                </svg>
-                            </button>
+                        {/* Navigation Dots for Desktop */}
+                        <div className="flex justify-center gap-2 mt-8">
+                            {items.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setActiveIndex(index)}
+                                    className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
+                                        ? 'w-8 bg-[#724e99]'
+                                        : 'w-2 bg-[#724e99]/30 hover:bg-[#724e99]/50'
+                                        }`}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
                         </div>
-                    )}
-
-                    {/* Navigation Dots */}
-                    <div className={`flex justify-center gap-2 ${isMobile ? 'mt-4' : 'mt-8'}`}>
-                        {items.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => isMobile ? setActiveIndex(index) : handleCardClick(index)}
-                                className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex
-                                    ? 'w-8 bg-[#724e99]'
-                                    : 'w-2 bg-[#724e99]/30 hover:bg-[#724e99]/50'
-                                    }`}
-                                aria-label={`Go to slide ${index + 1}`}
-                            />
-                        ))}
-                    </div>
+                    </DesktopView>
                 </div>
             </div>
         </>

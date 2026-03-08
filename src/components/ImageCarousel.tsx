@@ -71,14 +71,15 @@ const ImageCarousel = () => {
                 }}
                 className="w-full"
             >
-                <div className="container mx-auto px-4 mb-12">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-[#1a1a1a] mb-4">
-                        Powered by{' '}
+                <div className="container mx-auto px-4 mb-8 md:mb-12">
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-[#1a1a1a] mb-4 leading-tight">
+                        Powered by{" "}
+                        <br className="md:hidden" />
                         <span className="bg-gradient-to-r from-[#724e99] to-[#e3d3f2] bg-clip-text text-transparent">
                             Organic Engagement
                         </span>
                     </h2>
-                    <p className="text-center text-[#666666] text-lg max-w-2xl mx-auto">
+                    <p className="text-center text-[#666666] text-base md:text-lg max-w-2xl mx-auto">
                         Join a thriving community of developers, mentors, and innovators
                     </p>
                 </div>
@@ -102,14 +103,14 @@ const ImageCarousel = () => {
                         {[...topRowImages, ...topRowImages].map((img, index) => (
                             <div
                                 key={`top-${index}`}
-                                className="relative flex-shrink-0 w-[200px] h-[140px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-2 md:mx-3 rounded-xl overflow-hidden group"
+                                className="relative flex-shrink-0 w-[150px] h-[100px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-1 md:mx-3 rounded-xl overflow-hidden group"
                             >
                                 <Image
                                     src={img}
                                     alt={`Community event ${index + 1}`}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
-                                    sizes="(max-width: 768px) 200px, (max-width: 1024px) 300px, 400px"
+                                    sizes="(max-width: 768px) 150px, (max-width: 1024px) 300px, 400px"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#724e99]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
@@ -136,14 +137,14 @@ const ImageCarousel = () => {
                         {[...bottomRowImages, ...bottomRowImages].map((img, index) => (
                             <div
                                 key={`bottom-${index}`}
-                                className="relative flex-shrink-0 w-[200px] h-[140px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-2 md:mx-3 rounded-xl overflow-hidden group"
+                                className="relative flex-shrink-0 w-[150px] h-[100px] md:w-[300px] md:h-[200px] lg:w-[400px] lg:h-[260px] mx-1 md:mx-3 rounded-xl overflow-hidden group"
                             >
                                 <Image
                                     src={img}
                                     alt={`Community event ${index + 1}`}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
-                                    sizes="(max-width: 768px) 200px, (max-width: 1024px) 300px, 400px"
+                                    sizes="(max-width: 768px) 150px, (max-width: 1024px) 300px, 400px"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#724e99]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
