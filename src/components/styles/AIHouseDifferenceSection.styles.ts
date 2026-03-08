@@ -24,7 +24,7 @@ export const differenceStyles = {
     highlight: "text-[#724e99] font-bold",
 
     // Image
-    imageContainer: "relative h-[400px] md:h-[600px] w-full",
+    imageContainer: "relative h-[300px] md:h-[600px] w-full",
     imageWrapper: "relative w-full h-full rounded-3xl overflow-hidden shadow-2xl",
     imageOverlay: "absolute inset-0 bg-gradient-to-t from-[#724e99]/20 to-transparent",
     accent1: "absolute -bottom-4 -right-4 w-32 h-32 md:w-48 md:h-48 bg-[#eadff5] rounded-full -z-10 blur-3xl opacity-50",

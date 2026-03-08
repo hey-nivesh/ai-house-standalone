@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links - Centered Row */}
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-8">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 mb-8 px-4">
             {exploreLinks.map((link, index) => (
               <a
                 key={index}

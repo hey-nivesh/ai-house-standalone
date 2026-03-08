@@ -85,29 +85,36 @@ const Title = styled.h1`
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 1rem;
+  text-align: center;
 
   @media (max-width: 1024px) {
     font-size: 2rem;
   }
 
   @media (max-width: 768px) {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1rem;
-    margin-bottom: 0.375rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
 
   @media (min-width: 1024px) {
     gap: 2.5rem;
@@ -151,15 +158,15 @@ const Card = styled.div`
   }
 
   @media (max-width: 768px) {
-    min-height: 240px;
-    padding: 0.75rem;
-    border-radius: 1rem;
+    min-height: 280px;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
   }
 
   @media (max-width: 480px) {
-    min-height: 200px;
-    padding: 0.625rem;
-    border-radius: 0.875rem;
+    min-height: 250px;
+    padding: 1.25rem;
+    border-radius: 1rem;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -189,14 +196,14 @@ const CardTitle = styled.h3`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.75rem;
-    margin-bottom: 0.375rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -218,15 +225,15 @@ const CardDescription = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.65rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.6rem;
-    line-height: 1.25;
-    margin-bottom: 0.375rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
   }
 
   @media (hover: hover) and (pointer: fine) {

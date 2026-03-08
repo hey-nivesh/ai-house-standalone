@@ -32,7 +32,7 @@ const items: CarouselItem[] = [
         id: 'applied-ai-leaders',
         title: 'Applied AI Leaders & Product Builders',
         description: 'Professionals who are:\n• Leading or shaping AI adoption inside startups or enterprises\n• Responsible for turning models into deployable, scalable systems\n• Looking for peer-level discussions on architecture, MLOps, and real-world constraints',
-        image: '/ai-house/20251219_191055.jpg'
+        image: '/DSC_0615.jpg'
     }
 ];
 
