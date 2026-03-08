@@ -17,6 +17,10 @@ import WorkshopsFAQ from "@/components/WorkshopsFAQ";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import dynamic from "next/dynamic";
+// import ImpactPreview from "@/components/impact/ImpactPreview";
+import CommunityStats from "@/components/CommunityStats";
+import EventsSection from "@/components/EventsSection";
+import LBLIntroSection from "@/components/LBLIntroSection";
 
 // Simple skeleton placeholder used before sections mount
 const SectionSkeleton = ({ minHeight = 420 }: { minHeight?: number }) => (
@@ -308,7 +312,7 @@ export default function Home() {
                       Join now
                     </MidCTAButton>
                   </Link>
-                  <Link href="https://luma.com/ai_house?k=c" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://luma.com/ai_house">
                     <SecondaryCTAButton>
                       See upcoming events
                     </SecondaryCTAButton>
@@ -390,7 +394,11 @@ export default function Home() {
               </MatrixShowcase>
             </MatrixWrapper>
             <LearningPlatformUI />
+            <CommunityStats />
+            <LBLIntroSection />
             <LinkedInShowcase />
+            <EventsSection />
+            {/* <ImpactPreview /> */}
             <CoreOfferingsSection />
             <LazySection>
               <ImageCarouselDynamic />
