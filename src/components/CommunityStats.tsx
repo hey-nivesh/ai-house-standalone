@@ -8,8 +8,8 @@ const stats = [
   { value: "100+", label: "Events, Workshops, Hackathons, Challenges", icon: Users },
   { value: "3000+", label: "Monthly Platform Users Active", icon: Code },
   { value: "5000+", label: "Mentored 1:1 in the AI Field", icon: MapPin },
-  { value: "700+", label: "Speakers / Organisers / Tech Influencers", icon: Trophy },
-  { value: "50+", label: "College Database", icon: GraduationCap },
+  { value: "20+", label: "Community Collaboration", icon: Trophy },
+  { value: "7+", label: "MoU Signed with Colleges", icon: GraduationCap },
 ];
 
 const Section = styled.section`
