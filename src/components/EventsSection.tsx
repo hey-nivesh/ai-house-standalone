@@ -10,7 +10,7 @@ const events = [
     title: "The Secure Agent Build: From TDD to EDD with Enkrypt AI",
     monthLabel: "Mar",
     dayNumber: "08",
-    fullDate: "Sunday, March 8",
+    fullDate: "Sunday",
     time: "2:00 PM - 6:00 PM",
     venue: "Titan World - HSR Layout, Bengaluru",
     location: "Bengaluru, Karnataka",
@@ -20,34 +20,34 @@ const events = [
     image: "/upcoming events/dsa_agentic_powered_by_lyzr.png",
     title: "Unlocking Dave's First Skill: Agentic DSA Powered by Lyzr",
     monthLabel: "Mar",
-    dayNumber: "14",
-    fullDate: "Saturday, March 14",
+    dayNumber: "21",
+    fullDate: "Saturday",
     time: "2:00 PM - 6:00 PM",
     venue: "Titan World - HSR Layout",
     location: "Bengaluru, Karnataka",
     link: "https://luma.com/czbzhdg6"
   },
   {
-    image: "/upcoming events/open_claw_ai_agents.png",
-    title: "HSRFC x OpenClaw Builders (AI Agents and Personal Assistants)",
-    monthLabel: "Mar",
-    dayNumber: "21",
-    fullDate: "Saturday, March 21",
-    time: "2:00 PM - 6:00 PM",
-    venue: "OJone",
-    location: "Bengaluru, Karnataka",
-    link: "https://luma.com/t1jvh4av"
-  },
-  {
     image: "/upcoming events/hack_together.png",
     title: "Ambient Intelligence Hackathon: Building the Second Brain",
     monthLabel: "Mar",
     dayNumber: "28",
-    fullDate: "Saturday, March 28",
+    fullDate: "Saturday",
     time: "9:00 AM - 1:00 PM",
     venue: "OJone",
     location: "Bengaluru, Karnataka",
     link: "https://luma.com/j4he39o0"
+  },
+  {
+    image: "/upcoming events/open_claw_ai_agents.png",
+    title: "OpenClaw: Build Your Autonomous Assistant",
+    monthLabel: "Apr",
+    dayNumber: "11",
+    fullDate: "Saturday",
+    time: "2:00 PM - 6:00 PM",
+    venue: "OJone",
+    location: "Bengaluru, Karnataka",
+    link: "https://luma.com/t1jvh4av"
   },
 ];
 
