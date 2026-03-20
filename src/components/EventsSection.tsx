@@ -28,7 +28,7 @@ const events = [
     link: "https://luma.com/czbzhdg6"
   },
   {
-    image: "/upcoming events/hack_together.png",
+    image: "/upcoming events/ambient_intelligent.png",
     title: "Ambient Intelligence Hackathon: Building the Second Brain",
     monthLabel: "Mar",
     dayNumber: "28",
