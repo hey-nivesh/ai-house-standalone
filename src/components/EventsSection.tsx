@@ -20,7 +20,7 @@ const events = [
     image: "/upcoming events/dsa_agentic_powered_by_lyzr.png",
     title: "Unlocking Dave's First Skill: Agentic DSA Powered by Lyzr",
     monthLabel: "Mar",
-    dayNumber: "21",
+    dayNumber: "28",
     fullDate: "Saturday",
     time: "2:00 PM - 6:00 PM",
     venue: "Titan World - HSR Layout",
