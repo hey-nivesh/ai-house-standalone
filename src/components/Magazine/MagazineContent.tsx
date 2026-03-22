@@ -514,11 +514,11 @@ const Spread2Center = () => {
       <h2 style={headline}>The Builder Movement Rising</h2>
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0.5rem' : '2rem', alignItems: 'start', marginBottom: 10 }}>
         <div>
-          <p style={bodyP}>The builder movement is accelerating. Across online and offline sessions, we engaged over <span style={statHighlight}>650+</span> builders with an average participant rating of <span style={statHighlight}>4.8/5</span>. Participants frequently cited high-density networking and technical unblocking as key highlights.</p>
+          <p style={bodyP}>The builder movement is accelerating. Across online and offline sessions, we engaged over <span style={statHighlight}>650</span> builders with an average participant rating of <span style={statHighlight}>4.8/5</span>. Participants frequently cited high-value networking and technical unblocking as key highlights.</p>
           <p style={{ ...bodyP, marginBottom: 0 }}>Recent high-impact sessions include the <strong>OpenClaw Buildathon</strong>, the <strong>Founder&apos;s Friday Mixer</strong> with HSR Founder Club, and our <strong>Community Mixer</strong>, a collaborative build session for syncing on upcoming projects.</p>
         </div>
         <div>
-          <p style={bodyP}>Our expansion continues with the appointment of <strong>Kuldeep Chaudhary</strong> as the NCR City Lead, spearheading our GenAI Circuit. We also inaugurated the <strong>Vibe Coding Club</strong> at Nitte Meenakshi Institute of Technology, focusing on rapid, intuition-led development with AI agents.</p>
+          <p style={bodyP}>Our expansion continues with the appointment of <strong>Kuldeep Chaudhary</strong> as the NCR City Lead, who will spearhead our GenAI Circuit. We also inaugurated the <strong>Vibe Coding Club</strong> at Nitte Meenakshi Institute of Technology, a club focused on rapid, intuition-led development with AI agents.</p>
           <p style={{ ...bodyP, marginBottom: 0 }}>We distributed <span style={statHighlight}>890</span> physical copies of "Principles of Building AI Agents" this month, providing a clear roadmap for mastering agentic workflows.</p>
         </div>
       </div>
@@ -587,7 +587,7 @@ const Spread3Center = () => {
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0.5rem' : '1.85rem', alignItems: 'start' }}>
         <div>
           <p style={{ ...bodyP, lineHeight: 1.5 }}>We are transforming how technical capability is measured. Our new <strong>Agentic Deployment Portal</strong> is a performance-indexed marketplace where top-scoring builders are matched with roles based on verified platform data.</p>
-          <p style={{ ...bodyP, marginBottom: 0, lineHeight: 1.5 }}>Our dedicated portal for <strong>Competitions &amp; Challenges</strong> allows builders to participate in high-stakes AI challenges that test logic and the ability to ship production-ready code under pressure.</p>
+          <p style={{ ...bodyP, marginBottom: 0, lineHeight: 1.5 }}>Our dedicated portal for <strong>Competitions &amp; Challenges</strong> allows builders to participate in high-stakes AI challenges that test architectural reasoning and the ability to ship production-ready code under pressure.</p>
         </div>
         <div>
           <p style={{ ...bodyP, lineHeight: 1.5 }}>The <strong>100-Day Gamified GenAI Internship</strong> has seen rapid adoption, turning builders into production-ready engineers through a series of increasingly complex agentic workflows.</p>
@@ -650,7 +650,7 @@ const Spread4Center = () => {
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0.5rem' : '1.85rem', alignItems: 'start' }}>
         <div>
           <p style={{ ...bodyP, marginBottom: '1rem' }}>The industry is tired of resumes; it&apos;s looking for proof. HiDevs provides a ledger of technical execution that becomes the primary hiring signal for the global AI industry.</p>
-          <p style={{ ...bodyP, marginBottom: 0 }}>Our competitions are rigorous validation engines. They are not simple tests; they are architectural gauntlets that ensure builders develop deep architectural intuition rather than taking shortcuts.</p>
+          <p style={{ ...bodyP, marginBottom: 0 }}>Our competitions are rigorous validation engines. They are not simple tests; they are rigorous gauntlets that ensure builders develop deep architectural intuition rather than taking shortcuts.</p>
         </div>
         <div>
           <p style={{ ...bodyP, marginBottom: '1rem' }}>Top-scoring builders on our <strong>Agentic Deployment Portal</strong> are indexed and matched with industry-leading roles based on verified platform data. No shortcuts, just verified capability.</p>
@@ -833,7 +833,7 @@ export const Spread2Right = () => {
         <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
           <span style={sidebarLabel}>BUILDER OF THE MONTH</span>
           <h3 style={h3Style}>AKARSH SANGISETTI</h3>
-          <p style={{ ...bodyP, textAlign: 'center' }}>Currently leading the HiDevs Talent Pool with a high execution score. Akarsh has demonstrated exceptional reasoning depth and consistency in shipping production-ready agentic workflows within our ecosystem.</p>
+          <p style={{ ...bodyP, textAlign: 'center' }}>Akarsh is currently leading the HiDevs Talent Pool with a high execution score. Akarsh has demonstrated exceptional reasoning depth and consistency in shipping production-ready agentic workflows within our ecosystem.</p>
           <a href="https://app.hidevs.xyz/profile/23btrcn056" target="_blank" style={{ display: 'inline-block', fontFamily: V.fontDeck, fontSize: '0.62rem', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '2rem', marginTop: '0.5rem' }}>VIEW EXECUTION PROFILE →</a>
         </div>
         <div style={{ textAlign: 'center', padding: '0.85rem 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
