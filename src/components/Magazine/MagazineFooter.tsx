@@ -18,7 +18,7 @@ export default function MagazineFooter() {
 
       {/* Brand */}
       <div style={{ textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', fontWeight: 700, color: '#fff', margin: 0, letterSpacing: '-0.5px' }}>HiDevs</h2>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', fontWeight: 700, color: '#fff', margin: 0, letterSpacing: '-0.5px' }}>AI House</h2>
         <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.82rem', fontWeight: 300, lineHeight: 1.5, margin: '0.4rem 0 0', textAlign: 'center' }}>
           Building the world's largest GenAI workforce.<br />
           Experience production-grade shipping.
@@ -28,7 +28,7 @@ export default function MagazineFooter() {
       {/* Nav */}
       <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
         {[
-          ['Official Platform', 'https://www.hidevs.xyz'],
+          ['Platform', 'https://www.hidevs.xyz'],
           ['AI House', 'https://www.aihouze.xyz'],
           ['Builder App', 'https://app.hidevs.xyz'],
         ].map(([label, href]) => (

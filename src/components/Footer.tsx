@@ -4,15 +4,9 @@ import { Instagram, Linkedin, Twitter } from "lucide-react";
 const Footer = () => {
   const exploreLinks = [
     { title: "Home", href: "https://www.hidevs.xyz" },
-    { title: "AI House", href: "https://www.aihouze.xyz" },
     { title: "About Us", href: "https://www.hidevs.xyz/aboutus" },
     { title: "City Lead", href: "https://www.hidevs.xyz/city-lead" },
     { title: "Newsletter", href: "/newsletter" },
-  ];
-
-  const legalLinks = [
-    { title: "Terms & Conditions", href: "https://www.hidevs.xyz/terms" },
-    { title: "Refund Policy", href: "https://www.hidevs.xyz/refund-policy" },
   ];
 
   const socialIcons = [
@@ -38,7 +32,7 @@ const Footer = () => {
               className="inline-block transition-transform hover:-translate-y-1"
             >
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                HiDevs
+                AI House
               </h3>
             </a>
             <p className="text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed">
@@ -52,17 +46,6 @@ const Footer = () => {
             {exploreLinks.map((link, index) => (
               <a
                 key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-sm md:text-base font-medium hover:text-[#eadff5] transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#eadff5] after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.title}
-              </a>
-            ))}
-            {legalLinks.map((link, index) => (
-              <a
-                key={`legal-${index}`}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"

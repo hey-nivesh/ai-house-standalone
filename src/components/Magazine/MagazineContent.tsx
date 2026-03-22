@@ -514,7 +514,7 @@ const Spread2Center = () => {
       <h2 style={headline}>The Builder Movement Rising</h2>
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0.5rem' : '2rem', alignItems: 'start', marginBottom: 10 }}>
         <div>
-          <p style={bodyP}>The builder movement is accelerating. Across online and offline sessions, we engaged over <span style={statHighlight}>650</span> builders with an average participant rating of <span style={statHighlight}>4.8/5</span>. Participants frequently cited high-value networking and technical unblocking as key highlights.</p>
+          <p style={bodyP}>The builder movement is accelerating. Across online and offline sessions, we engaged over <span style={statHighlight}>2788</span> builders with an average participant rating of <span style={statHighlight}>4.8/5</span>. Participants frequently cited high-value networking and technical unblocking as key highlights.</p>
           <p style={{ ...bodyP, marginBottom: 0 }}>Recent high-impact sessions include the <strong>OpenClaw Buildathon</strong>, the <strong>Founder&apos;s Friday Mixer</strong> with HSR Founder Club, and our <strong>Community Mixer</strong>, a collaborative build session for syncing on upcoming projects.</p>
         </div>
         <div>
@@ -528,7 +528,7 @@ const Spread2Center = () => {
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.1rem' }}>
           <div style={{ textAlign: 'center', minWidth: 'clamp(60px, 8vw, 92px)', paddingTop: '0.15rem' }}>
             <span style={{ ...statBig, fontSize: 'clamp(1.8rem,4vw,3.4rem)', lineHeight: 0.95 }}>4.8</span>
-            <span style={{ fontFamily: V.fontBody, fontSize: 'clamp(0.6rem, 1.2vw, 0.84rem)', color: 'rgba(0,0,0,0.48)', display: 'block', marginTop: '0.25rem', lineHeight: 1.55 }}>650+ Ratings</span>
+            <span style={{ fontFamily: V.fontBody, fontSize: 'clamp(0.6rem, 1.2vw, 0.84rem)', color: 'rgba(0,0,0,0.48)', display: 'block', marginTop: '0.25rem', lineHeight: 1.55 }}>2788+ Ratings</span>
           </div>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 'clamp(0.2rem, 0.5vw, 0.45rem)', paddingTop: '0.25rem' }}>
             {[['🤩', '85%'], ['🙂', '10%'], ['😐', '3%'], ['😔', '1%'], ['😡', '1%']].map(([emoji, w]) => (
@@ -548,14 +548,17 @@ const Spread2Center = () => {
     </div>
     <div style={{ marginTop: '1.2rem', paddingTop: '1rem' }}>
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.4rem', borderTop: '1px solid rgba(114,78,153,0.12)', paddingTop: '1rem' }}>
-        <div style={{ paddingLeft: '0.8rem', borderLeft: '3px solid ' + V.primary }}>
+        <div style={{ paddingLeft: '0.8rem', borderLeft: '3px solid ' + V.primary, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
           <span style={sidebarLabel}>DISTRIBUTION</span>
           <p style={{ fontFamily: V.fontHeading, fontSize: 'clamp(0.75rem, 1.4vw, 0.95rem)', fontStyle: 'italic', fontWeight: 500, color: V.ink, margin: '0.3rem 0 0.75rem', lineHeight: 1.45 }}>
             <strong>890 Books</strong> of "Principles of Building AI Agents" distributed globally this month.
           </p>
-          <a href="https://www.aihouze.xyz/" target="_blank" style={{ display: 'inline-block', fontFamily: V.fontDeck, fontSize: 'clamp(0.52rem, 1vw, 0.64rem)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.48rem 1rem', borderRadius: '2rem' }}>Join the Network →</a>
+          </div>
+          <a href="https://www.aihouze.xyz/" target="_blank" style={{ alignSelf: 'flex-start', display: 'inline-block', fontFamily: V.fontDeck, fontSize: 'clamp(0.52rem, 1vw, 0.64rem)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.48rem 1rem', borderRadius: '2rem' }}>Join the Network →</a>
         </div>
-        <div style={{ paddingLeft: '1rem', borderLeft: '3px solid ' + V.primary }}>
+        <div style={{ paddingLeft: '1rem', borderLeft: '3px solid ' + V.primary, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
           <span style={sidebarLabel}>LATEST MISSIONS</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(0.4rem, 1vw, 1rem)', margin: '0.35rem 0 0.7rem' }}>
             {[['Community Mixer', 'Collaborative Build & Ideation'], ["Founder's Friday", 'Scaling in the Agentic Era']].map(([t, m]) => (
@@ -568,7 +571,8 @@ const Spread2Center = () => {
               </div>
             ))}
           </div>
-          <a href="https://luma.com/ai_house" target="_blank" style={{ display: 'inline-block', fontFamily: V.fontDeck, fontSize: 'clamp(0.52rem, 1vw, 0.64rem)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.48rem 1rem', borderRadius: '2rem' }}>Upcoming Sessions →</a>
+          </div>
+          <a href="https://luma.com/ai_house" target="_blank" style={{ alignSelf: 'flex-start', display: 'inline-block', fontFamily: V.fontDeck, fontSize: 'clamp(0.52rem, 1vw, 0.64rem)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.48rem 1rem', borderRadius: '2rem' }}>Upcoming Sessions →</a>
         </div>
       </div>
     </div>
@@ -722,7 +726,7 @@ const Spread5Center = () => {
         </div>
       </div>
       <div style={{ display: 'flex', gap: '2.4rem', justifyContent: 'center', textAlign: 'center', margin: '1rem 0 0', paddingTop: '0.8rem', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-        {[['REGISTERED BUILDERS', '3,439'], ['MONTHLY GROWTH', '208+']].map(([label, val]) => (
+        {[['REGISTERED BUILDERS', '3,439'], ['MONTHLY GROWTH', '20%']].map(([label, val]) => (
           <div key={label}>
             <span style={sidebarLabel}>{label}</span>
             <span style={{ ...statBig, fontSize: 'clamp(2rem,4vw,3.8rem)', margin: '0.15rem 0' }}>{val}</span>
@@ -837,7 +841,7 @@ export const Spread2Right = () => {
           <a href="https://app.hidevs.xyz/profile/23btrcn056" target="_blank" style={{ display: 'inline-block', fontFamily: V.fontDeck, fontSize: '0.62rem', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: V.white, background: V.primary, textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '2rem', marginTop: '0.5rem' }}>VIEW EXECUTION PROFILE →</a>
         </div>
         <div style={{ textAlign: 'center', padding: '0.85rem 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-          <span style={{ ...statBig, fontSize: 'clamp(2rem,5vw,3rem)' }}>650+</span>
+          <span style={{ ...statBig, fontSize: 'clamp(2rem,5vw,3rem)' }}>2788+</span>
           <p style={{ ...bodyP, textAlign: 'center', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.2rem' }}>builders engaged this month.</p>
           <p style={{ ...bodyP, textAlign: 'center', opacity: 0.8, marginBottom: 0 }}>Average Event Rating: <span style={statHighlight}>4.8/5</span></p>
         </div>
@@ -1127,7 +1131,8 @@ export const Spread5Right = () => {
         {fullImg('/DSC_0795.jpg', 'HiDevs 2030 vision', 'clamp(14vh, 4vw + 10vh, 26vh)')}
         <div style={{ textAlign: 'left', padding: '0.35rem 0 0.9rem' }}>
           <p style={{ ...bodyP, textTransform: 'uppercase', letterSpacing: '1.3px', marginBottom: '0.2rem' }}>Goal:</p>
-          <span style={{ ...statBig, fontSize: 'clamp(3.4rem,8vw,5.4rem)', lineHeight: 0.9, margin: '0.15rem 0' }}>1M<br />Skilled</span>
+          <span style={{ ...statBig, fontSize: 'clamp(3.4rem,6vw,4.0rem)', lineHeight: 0.9, margin: '0.15rem 0' }}>1M</span>
+          <span style={{ ...statBig, fontSize: 'clamp(3.2rem,5vw,3.5rem)', lineHeight: 0.9, margin: '0.15rem 0', whiteSpace: 'nowrap' }}>AI Ready</span>
           <p style={{ ...bodyP, textTransform: 'uppercase', letterSpacing: '1.2px', marginBottom: 0 }}>by 2030.</p>
         </div>
         <div style={{ padding: '1rem 0 0.9rem', borderTop: '1px solid rgba(0,0,0,0.06)', textAlign: 'center', marginTop: '0.4rem' }}>
