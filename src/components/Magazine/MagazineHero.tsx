@@ -39,7 +39,7 @@ export default function MagazineHero() {
             }}
             style={{
               position: 'absolute',
-              bottom: '2rem',
+              bottom: '4rem',
               left: 0,
               right: 0,
               display: 'flex',
