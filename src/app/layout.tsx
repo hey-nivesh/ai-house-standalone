@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display, Oswald } from "next/font/google";
 import "./globals.css";
 // Preload animations early for better performance
 import "@/lib/animations";
@@ -8,8 +8,21 @@ import StyledComponentsRegistry from "@/lib/registry";
 const inter = Inter({
     variable: "--font-geist-sans",
     subsets: ["latin"],
-    display: "swap", // Optimize font loading
+    display: "swap",
     preload: true,
+});
+
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    variable: "--font-serif",
+    display: "swap",
+});
+
+const oswald = Oswald({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-deck",
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +50,7 @@ export default function RootLayout({
                 <link rel="dns-prefetch" href="https://www.google.com" />
             </head>
             <body
-                className={`${inter.variable} antialiased`}
+                className={`${inter.variable} ${playfair.variable} ${oswald.variable} antialiased`}
             >
                 <StyledComponentsRegistry>
                     {children}

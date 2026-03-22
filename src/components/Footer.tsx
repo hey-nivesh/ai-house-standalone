@@ -7,6 +7,7 @@ const Footer = () => {
     { title: "AI House", href: "https://www.aihouze.xyz" },
     { title: "About Us", href: "https://www.hidevs.xyz/aboutus" },
     { title: "City Lead", href: "https://www.hidevs.xyz/city-lead" },
+    { title: "Newsletter", href: "/newsletter" },
   ];
 
   const legalLinks = [

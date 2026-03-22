@@ -59,3 +59,88 @@ body {
         text-wrap: balance;
     }
 }
+
+/* ── Magazine / Newsletter styles ─────────────────────────────────────────── */
+:root {
+  --font-serif: "Playfair Display", serif;
+  --font-deck: "Oswald", sans-serif;
+  --color-premium-black: #050505;
+  --color-luxury-gold: #c5a059;
+}
+
+.magazine-canvas {
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.8);
+  border-radius: 4px;
+  overflow: visible !important;
+}
+
+.stf__parent {
+  perspective: 2500px !important;
+  z-index: 10;
+}
+
+.stf__block {
+  transform-style: preserve-3d !important;
+}
+
+.stf__item {
+  transform-style: preserve-3d !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2) !important;
+}
+
+.page {
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.page-content {
+  background-color: white;
+}
+
+.page-shadow-left {
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.3) 100%);
+}
+
+.page-shadow-right {
+  background: linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.3) 100%);
+}
+
+.ai-house-link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+  color: #c5a059;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.ai-house-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.ai-house-link:hover { color: #ffffff; }
+.ai-house-link:hover::after { width: 100%; }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes titleFadeUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-title {
+  animation: titleFadeUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

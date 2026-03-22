@@ -208,6 +208,7 @@ export default function Home() {
                   <NavLink href="https://www.hidevs.xyz/aboutus">About Us</NavLink>
                   <NavLink href="https://www.hidevs.xyz/city-lead">City Lead</NavLink>
                   <NavLink href="https://www.hidevs.xyz/lbl">LBL</NavLink>
+                  <NavLink href="/newsletter">Newsletter</NavLink>
                 </NavLinks>
                 <StartButton href="https://app.hidevs.xyz">Start Learning</StartButton>
 
@@ -234,6 +235,7 @@ export default function Home() {
                     <MobileNavLink href="https://www.hidevs.xyz/aboutus" onClick={() => setIsMobileMenuOpen(false)}>About Us</MobileNavLink>
                     <MobileNavLink href="https://www.hidevs.xyz/city-lead" onClick={() => setIsMobileMenuOpen(false)}>City Lead</MobileNavLink>
                     <MobileNavLink href="https://www.hidevs.xyz/lbl" onClick={() => setIsMobileMenuOpen(false)}>LBL</MobileNavLink>
+                    <MobileNavLink href="/newsletter" onClick={() => setIsMobileMenuOpen(false)}>Newsletter</MobileNavLink>
                     <MobileStartButton href="https://app.hidevs.xyz" onClick={() => setIsMobileMenuOpen(false)}>
                       Start Learning
                     </MobileStartButton>
