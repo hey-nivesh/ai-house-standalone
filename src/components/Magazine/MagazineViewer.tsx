@@ -78,9 +78,10 @@ const MAGAZINE_PAGE_COMPONENTS = [
 interface MagazineViewerProps {
   onAtStart?: (atStart: boolean) => void;
   onAtEnd?: (atEnd: boolean) => void;
+  heroVisible?: boolean;
 }
 
-export default function MagazineViewer({ onAtStart, onAtEnd }: MagazineViewerProps) {
+export default function MagazineViewer({ onAtStart, onAtEnd, heroVisible }: MagazineViewerProps) {
   const flipBook = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -92,6 +93,9 @@ export default function MagazineViewer({ onAtStart, onAtEnd }: MagazineViewerPro
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 800, height: 1000, portrait: false });
+  const [showScrollHint, setShowScrollHint] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+  const [showLastHint, setShowLastHint] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -132,9 +136,16 @@ export default function MagazineViewer({ onAtStart, onAtEnd }: MagazineViewerPro
     setCurrentPage(newPage);
     currentPageRef.current = newPage;
     const total = totalPageRef.current;
-
     if (onAtStart) onAtStart(newPage === 0);
-    if (onAtEnd && total > 0) onAtEnd(newPage >= total - 2);
+    if (onAtEnd && total > 0) {
+      const ended = newPage >= total - 2;
+      setAtEnd(ended);
+      onAtEnd(ended);
+      if (ended) {
+        setShowLastHint(true);
+        setTimeout(() => setShowLastHint(false), 2000);
+      }
+    }
   }, [onAtStart, onAtEnd]);
 
   const toggleFullscreen = () => {
@@ -195,6 +206,59 @@ export default function MagazineViewer({ onAtStart, onAtEnd }: MagazineViewerPro
       style={{ height: dimensions.portrait ? `${dimensions.height + 80}px` : '100vh' }}
       onMouseMove={() => setShowControls(true)}
     >
+      {/* Scroll hint */}
+      <AnimatePresence>
+        {showScrollHint && !heroVisible && (() => {
+          const isLast = totalPage > 0 && currentPage >= totalPage - 2;
+          if (isLast && !showLastHint) return null;
+          const label = isLast ? 'Scroll down for more' : 'Scroll to turn pages';
+          const icon = isLast ? '↓' : '↕';
+          return (
+            <motion.div
+              key={isLast ? 'last' : 'scroll'}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: [0, -6, 0] }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{
+                opacity: { duration: 0.5 },
+                y: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
+              }}
+              style={{
+                position: 'fixed',
+                bottom: '1.5rem',
+                left: 0,
+                right: 0,
+                display: 'flex',
+                justifyContent: 'center',
+                zIndex: 9999,
+                pointerEvents: 'none',
+              }}
+            >
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '0.5rem',
+                background: 'rgba(114, 78, 153, 0.2)',
+                border: '1px solid rgba(114,78,153,0.25)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+              }}>
+                <span style={{ color: 'rgba(100,70,140,0.65)', fontSize: '0.78rem' }}>{icon}</span>
+                <p style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '0.7rem',
+                  color: 'rgba(80,50,120,0.7)',
+                  letterSpacing: '0.04em',
+                  margin: 0,
+                  whiteSpace: 'nowrap',
+                }}>{label}</p>
+              </div>
+            </motion.div>
+          );
+        })()}
+      </AnimatePresence>
       {/* Magazine Engine - Fully adaptive to screen */}
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div

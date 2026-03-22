@@ -55,11 +55,11 @@ export default function ViewportNotice() {
     return (
       <AnimatePresence>
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 16 }}
+          exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-6 right-6 z-[9999] max-w-xs pointer-events-none"
+          className="fixed top-6 right-6 z-[9999] max-w-xs pointer-events-none"
         >
           <div
             className="flex items-start gap-3 px-4 py-3 rounded-xl shadow-lg"
@@ -94,11 +94,11 @@ export default function ViewportNotice() {
           style={{ background: 'rgba(74, 40, 128, 0.15)' }}
         />
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 40 }}
+          exit={{ opacity: 0, y: -40 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] max-w-lg w-[90vw] pointer-events-none"
+          className="fixed top-6 right-6 z-[9999] max-w-sm w-[90vw] pointer-events-none"
         >
           <div
             className="text-white text-center px-7 py-6 rounded-2xl shadow-2xl"

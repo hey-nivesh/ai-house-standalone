@@ -70,7 +70,7 @@ export default function NewsletterPage() {
       </motion.div>
 
       <div className="relative z-10">
-        <MagazineViewer onAtStart={handleAtStart} onAtEnd={setIsAtEnd} />
+        <MagazineViewer onAtStart={handleAtStart} onAtEnd={setIsAtEnd} heroVisible={showHero} />
       </div>
 
       <motion.div
