@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Head from 'next/head';
 
 export default function MagazineHero() {
   const [show, setShow] = useState(true);
   const [videoReady, setVideoReady] = useState(false);
+  const [showPoster, setShowPoster] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShow(false);
@@ -13,11 +15,45 @@ export default function MagazineHero() {
     return () => window.removeEventListener('wheel', onScroll);
   }, []);
 
+  // After 2s, if video still not playing, switch to poster image fallback
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (!videoReady) setShowPoster(true);
+    }, 2000);
+    return () => clearTimeout(t);
+  }, [videoReady]);
+
   return (
+    <>
+      <Head>
+        <link rel="preload" as="image" href="/hero_bg_poster.jpg" />
+      </Head>
     <section
       className="relative w-full h-screen overflow-hidden flex items-center justify-center"
       style={{ background: 'linear-gradient(135deg, #0a0514 0%, #1a0a2e 50%, #0d0d1a 100%)' }}
     >
+      {/* Poster image fallback — fades in after 2s if video hasn't started */}
+      <AnimatePresence>
+        {showPoster && !videoReady && (
+          <motion.div
+            key="poster"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 5,
+              backgroundImage: 'url(/hero_bg_poster.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              pointerEvents: 'none',
+            }}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Video */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <video
@@ -27,16 +63,16 @@ export default function MagazineHero() {
           playsInline
           preload="metadata"
           poster="/hero_bg_poster.jpg"
-          onPlaying={() => setVideoReady(true)}
+          onPlaying={() => { setVideoReady(true); setShowPoster(false); }}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         >
           <source src="/hero_bg.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* Loading overlay — on top of video, removed once playing */}
+      {/* Loading overlay — full animation, shown until video plays or 2s passes */}
       <AnimatePresence>
-        {!videoReady && (
+        {!videoReady && !showPoster && (
           <motion.div
             key="loader"
             initial={{ opacity: 1 }}
@@ -190,5 +226,6 @@ export default function MagazineHero() {
         )}
       </AnimatePresence>
     </section>
+    </>
   );
 }
