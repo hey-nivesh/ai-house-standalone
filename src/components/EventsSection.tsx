@@ -6,15 +6,15 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const events = [
   {
-    image: "/upcoming events/secure_agent_build.png",
-    title: "The Secure Agent Build: From TDD to EDD with Enkrypt AI",
+    image: "/upcoming events/autonomous-ecosystem.png",
+    title: "Autonomous Ecosystems: The Lyzr x Qdrant Online Hackathon",
     monthLabel: "Mar",
-    dayNumber: "08",
-    fullDate: "Sunday",
-    time: "2:00 PM - 6:00 PM",
-    venue: "Titan World - HSR Layout, Bengaluru",
-    location: "Bengaluru, Karnataka",
-    link: "https://luma.com/y8vzijyn"
+    dayNumber: "27",
+    fullDate: "Friday",
+    time: "10:00 PM (Mar 27) - 11:30 PM (Mar 31)",
+    venue: "Online",
+    location: "Online",
+    link: "https://luma.com/j4he39o0"
   },
   {
     image: "/upcoming events/dsa_agentic_powered_by_lyzr.png",
