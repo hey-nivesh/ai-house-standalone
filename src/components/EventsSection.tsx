@@ -28,15 +28,15 @@ const events = [
     link: "https://luma.com/czbzhdg6"
   },
   {
-    image: "/upcoming events/ambient_intelligent.png",
-    title: "Ambient Intelligence Hackathon: Building the Second Brain",
-    monthLabel: "Mar",
-    dayNumber: "28",
-    fullDate: "Saturday",
-    time: "9:00 AM - 1:00 PM",
-    venue: "OJone",
+    image: "/upcoming events/hackablr.png",
+    title: "HackBLR 2026",
+    monthLabel: "Apr",
+    dayNumber: "26",
+    fullDate: "Sunday",
+    time: "9:00 AM - 6:00 PM",
+    venue: "Bengaluru",
     location: "Bengaluru, Karnataka",
-    link: "https://luma.com/j4he39o0"
+    link: "https://luma.com/ia0ik7c6"
   },
   {
     image: "/upcoming events/open_claw_ai_agents.png",
